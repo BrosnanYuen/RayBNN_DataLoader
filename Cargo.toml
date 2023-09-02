@@ -3,10 +3,10 @@ name = "RayBNN_DataLoader"
 version = "0.1.0"
 authors = ["Brosnan Yuen <brosnanyuen@gmail.com>"]
 edition = "2021"
-description = "Data Loader for RayBNN"
+description = "Read CSV, numpy, and binary files to Rust vectors of f16, f32, f64, u8, u16, u32, u64, i8, i16, i32, i64"
 readme = "README.md"
 repository = "https://github.com/BrosnanYuen/RayBNN_DataLoader"
-keywords = ["dataloader","data","CUDA","OpenCL"]
+keywords = ["csv","numpy","data","CUDA","OpenCL"]
 license = "GPL-3.0-only"
 categories = ["science"]
 
