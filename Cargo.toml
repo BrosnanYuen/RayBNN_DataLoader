@@ -1,0 +1,59 @@
+[package]
+name = "RayBNN_DataLoader"
+version = "0.1.0"
+authors = ["Brosnan Yuen <brosnanyuen@gmail.com>"]
+edition = "2021"
+description = "Data Loader for RayBNN"
+readme = "README.md"
+repository = "https://github.com/BrosnanYuen/RayBNN_DataLoader"
+keywords = ["dataloader","data","CUDA","OpenCL"]
+license = "GPL-3.0-only"
+categories = ["science"]
+
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+arrayfire = { version = "3.8.1", package = "arrayfire_fork" }
+num = "0.4.1"
+num-traits = "0.2.16"
+half = { version = "2.3.1" , features = ["num-traits"] }
+
+[dev-dependencies]
+arrayfire = { version = "3.8.1", package = "arrayfire_fork" }
+num = "0.4.1"
+num-traits = "0.2.16"
+half = { version = "2.3.1" , features = ["num-traits"] }
+
+[build-dependencies]
+arrayfire = { version = "3.8.1", package = "arrayfire_fork" }
+num = "0.4.1"
+num-traits = "0.2.16"
+half = { version = "2.3.1" , features = ["num-traits"] }
+
+
+[lib]
+name = "RayBNN_DiffEq"
+path = "src/lib.rs"
+
+
+[[example]]
+name = "Linear_ODE"
+path = "examples/Linear_ODE.rs"
+
+[[example]]
+name = "Linear_Matrix_ODE"
+path = "examples/Linear_Matrix_ODE.rs"
+
+
+[[example]]
+name = "1000x1000_Matrix_ODE"
+path = "examples/1000x1000_Matrix_ODE.rs"
+
+
+[[example]]
+name = "Linear_ODE_f32"
+path = "examples/Linear_ODE_f32.rs"
+
+
+
