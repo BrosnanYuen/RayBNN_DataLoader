@@ -51,9 +51,17 @@ pub fn file_to_vec_cpu<Z: std::str::FromStr + Send + Sync>(
 	let tmp = contents.par_split('\n').map(str_to_vec_cpu );
 
     metadata.insert("dims", 2);
-    metadata.insert("dim0", (tmp.clone().count() as u64) - 1);
+
+    let dim0 = (tmp.clone().count() as u64) - 1;
+    metadata.insert("dim0", dim0.clone());
+
+    let result: Vec<Z> = tmp.flatten_iter().collect();
+
+    let dim1 = (result.len() as u64)/dim0;
+
+    metadata.insert("dim1", dim1.clone());
     
-    (tmp.flatten_iter().collect(),metadata)
+    (result,metadata)
 }
 
 
