@@ -80,7 +80,7 @@ fn test_dataset() {
 
 
 
-    let mut read_test = RayBNN_DataLoader::Dataset::CSV::file_to_vec_cpu::<f64>(
+    let (mut read_test,metadata) = RayBNN_DataLoader::Dataset::CSV::file_to_vec_cpu::<f64>(
     	"./test_data/read_test.dat"
     );
 
@@ -107,7 +107,7 @@ fn test_dataset() {
 
 
 
-    let mut read_test2 = RayBNN_DataLoader::Dataset::CSV::file_to_vec_cpu::<i64>(
+    let (mut read_test2,metadata) = RayBNN_DataLoader::Dataset::CSV::file_to_vec_cpu::<i64>(
     	"./test_data/read_test2.dat"
     );
 
@@ -125,7 +125,7 @@ fn test_dataset() {
 
 
 
-    let mut read_test2 = RayBNN_DataLoader::Dataset::CSV::file_to_vec_cpu::<i32>(
+    let (mut read_test2,metadata) = RayBNN_DataLoader::Dataset::CSV::file_to_vec_cpu::<i32>(
     	"./test_data/read_test2.dat"
     );
 
