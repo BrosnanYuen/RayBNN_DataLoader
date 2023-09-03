@@ -13,7 +13,7 @@ use rayon::prelude::*;
 
 
 #[test]
-fn test_dataset() {
+fn test_dataset_csv() {
     arrayfire::set_backend(BACK_END);
     arrayfire::set_device(DEVICE);
 
@@ -143,5 +143,19 @@ fn test_dataset() {
     assert_eq!(read_test2, read_act2);
     assert_eq!(metadata[&"dim0"], 7);
     assert_eq!(metadata[&"dim1"], 4);
+
+
+
+
+
+
+
+
+
+    let arr = RayBNN_DataLoader::Dataset::CSV::file_to_arrayfire::<f64>(
+    	"./test_data/read_test.dat"
+    );
+
+
 
 }
