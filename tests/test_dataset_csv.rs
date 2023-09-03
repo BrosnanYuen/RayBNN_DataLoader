@@ -156,6 +156,6 @@ fn test_dataset_csv() {
     	"./test_data/read_test.dat"
     );
 
-
+    arrayfire::print_gen("arr".to_string(), &arr,Some(6));
 
 }
