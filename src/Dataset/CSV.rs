@@ -106,7 +106,8 @@ pub fn vec_cpu_to_str<Z: arrayfire::HasAfEnum>(
 
 pub fn write_vec_cpu_to_csv<Z: arrayfire::HasAfEnum>(
 	filename: &str,
-	invec: &Vec<Z>
+	invec: &Vec<Z>,
+	metadata: HashMap<&str,u64>,
 	)
 {
 
