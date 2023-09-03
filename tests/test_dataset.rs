@@ -59,4 +59,10 @@ fn test_dataset() {
 
 
 
+
+    let instr: String = String::from("aaa, bbb, ccc");
+    let outvec_cpu = RayBNN_DataLoader::Dataset::CSV::str_to_vec_cpu::<u64>(&instr);
+    assert_eq!(outvec_cpu.len(), 0);
+
+
 }
