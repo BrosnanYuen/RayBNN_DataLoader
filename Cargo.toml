@@ -36,27 +36,12 @@ half = { version = "2.3.1" , features = ["num-traits"] }
 
 
 [lib]
-name = "RayBNN_DiffEq"
+name = "RayBNN_DataLoader"
 path = "src/lib.rs"
 
 
 [[example]]
 name = "Linear_ODE"
 path = "examples/Linear_ODE.rs"
-
-[[example]]
-name = "Linear_Matrix_ODE"
-path = "examples/Linear_Matrix_ODE.rs"
-
-
-[[example]]
-name = "1000x1000_Matrix_ODE"
-path = "examples/1000x1000_Matrix_ODE.rs"
-
-
-[[example]]
-name = "Linear_ODE_f32"
-path = "examples/Linear_ODE_f32.rs"
-
 
 
