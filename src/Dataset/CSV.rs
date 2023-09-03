@@ -8,7 +8,8 @@ use std::fs;
 
 use std::collections::HashMap;
 
-use std::fmt::Debug;
+use std::fs::File;
+use std::io::Write;
 
 pub fn str_to_vec_cpu<Z: std::str::FromStr>(
 	instr: &str
@@ -100,6 +101,21 @@ pub fn vec_cpu_to_str<Z: arrayfire::HasAfEnum>(
 }
 
 
+
+
+
+pub fn write_vec_cpu_to_csv<Z: arrayfire::HasAfEnum>(
+	filename: &str,
+	invec: &Vec<Z>
+	)
+{
+
+	let mut wtr0 = vec_cpu_to_str::<Z>(invec);
+
+	
+	let mut file0 = File::create(filename).unwrap();
+	writeln!(file0, "{}", wtr0);
+}
 
 
 
