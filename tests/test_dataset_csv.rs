@@ -233,6 +233,24 @@ fn test_dataset_csv() {
 
 
 
+	let row3 = arrayfire::row(&read_test,3);
+
+	let mut row3_cpu = vec!(f64::default();row3.elements());
+	row3.host(&mut row3_cpu);
+
+	let mut row3_act: Vec<f64> = vec![0.00012772,-0.00088359,-0.0072174,0.0043621,0.0046395,2.6826e-05];
+
+	row3_act = row3_act.par_iter().map(|x|  (x * 1.0e10).round() / 1.0e10 ).collect::<Vec<f64>>();
+
+	row3_cpu = row3_cpu.par_iter().map(|x|  (x * 1.0e10).round() / 1.0e10 ).collect::<Vec<f64>>();
+
+	assert_eq!(row3_cpu, row3_act);
+
+
+
+
+
+
 
 
     let read_test = RayBNN_DataLoader::Dataset::CSV::file_to_arrayfire::<i64>(
@@ -268,6 +286,26 @@ fn test_dataset_csv() {
 
 	assert_eq!(row1_cpu, row1_act);
 
+
+
+
+
+
+
+
+
+
+
+
+
+	let row2 = arrayfire::row(&read_test,6);
+
+	let mut row2_cpu = vec!(i64::default();row2.elements());
+	row2.host(&mut row2_cpu);
+
+	let mut row2_act: Vec<i64> = vec![431,585,-4,215];
+
+	assert_eq!(row2_cpu, row2_act);
 
 
 }
