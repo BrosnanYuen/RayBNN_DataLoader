@@ -40,4 +40,23 @@ fn test_dataset() {
     assert_eq!(outvec_cpu, inx_cpu);
 
 
+
+
+
+    let inx_cpu: [i64; 5] = [0, -4, 1, -9, 3];
+
+    let instr: String = String::from("0,-4, 1,   -9,  3");
+    let outvec_cpu = RayBNN_DataLoader::Dataset::CSV::str_to_vec_cpu::<i64>(&instr);
+    assert_eq!(outvec_cpu, inx_cpu);
+
+
+
+    let inx_cpu: [u64; 5] = [0, 4, 1, 9, 3];
+
+    let instr: String = String::from("0, 4, 1, 9, 3");
+    let outvec_cpu = RayBNN_DataLoader::Dataset::CSV::str_to_vec_cpu::<u64>(&instr);
+    assert_eq!(outvec_cpu, inx_cpu);
+
+
+
 }
