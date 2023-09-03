@@ -120,4 +120,22 @@ fn test_dataset() {
     ];
     assert_eq!(read_test2, read_act2);
 
+
+
+
+
+
+    let mut read_test2 = RayBNN_DataLoader::Dataset::CSV::file_to_vec_cpu::<i32>(
+    	"./test_data/read_test2.dat"
+    );
+
+    let mut read_act2: Vec<i32> = vec![
+        233,-4233,234,631,
+        24, 222,-1,23,
+        45,3,1,100,
+        -2,3,  5,61,
+        344,222,33,-10
+    ];
+    assert_eq!(read_test2, read_act2);
+
 }
