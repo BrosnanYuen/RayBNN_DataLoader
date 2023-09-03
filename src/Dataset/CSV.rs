@@ -9,11 +9,11 @@ use std::fs;
 
 
 
-pub fn str_to_vec_cpu(
+pub fn str_to_vec_cpu<Z: std::str::FromStr>(
 	instr: &str
-) -> Vec<f64>  {
+) -> Vec<Z>  {
 
-	let mut vecf64: Vec<f64> = Vec::new();
+	let mut vecZ: Vec<Z> = Vec::new();
 
 
 	let mut newline = instr.replace("\n", "");
@@ -22,17 +22,17 @@ pub fn str_to_vec_cpu(
 	if newline.len() > 0
 	{
 		let strvec: Vec<&str> = newline.split(",").collect();
-		let ssize: u64 = strvec.len() as u64;
-
 		
-		for i in 0u64..ssize
+		for i in 0..strvec.len()
 		{
-			let value:f64 = strvec[i as usize].parse::<f64>().unwrap();
-			vecf64.push(value);
+            match strvec[i as usize].parse::<Z>() {
+                Ok(n) => vecZ.push(n),
+                Err(..) => {}
+            }
 		}
 	}
 
-	vecf64
+	vecZ
 }
 
 
