@@ -24,5 +24,20 @@ fn test_dataset() {
 
 
 
+    let inx_cpu: [i32; 5] = [0, -4, 1, -9, 3];
+
+    let instr: String = String::from("0,-4, 1,   -9,  3");
+    let outvec_cpu = RayBNN_DataLoader::Dataset::CSV::str_to_vec_cpu::<i32>(&instr);
+    assert_eq!(outvec_cpu, inx_cpu);
+
+
+
+
+    let inx_cpu: [f32; 5] = [0.0, -4.1, 1.7, -0.9, 0.3];
+
+    let instr: String = String::from("0.0, -4.1,1.7, -0.9, 0.3");
+    let outvec_cpu = RayBNN_DataLoader::Dataset::CSV::str_to_vec_cpu::<f32>(&instr);
+    assert_eq!(outvec_cpu, inx_cpu);
+
 
 }
