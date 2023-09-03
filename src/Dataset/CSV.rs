@@ -65,3 +65,21 @@ pub fn file_to_vec_cpu<Z: std::str::FromStr + Send + Sync>(
 }
 
 
+
+
+pub fn file_to_arrayfire<Z: std::str::FromStr + arrayfire::HasAfEnum + Send + Sync>(
+	filename: &str,
+	) -> arrayfire::Array<Z>  {
+
+	let (vector,metadata) = file_to_vec_cpu::<Z>(filename);
+
+    let dim0 = metadata[&"dim0"];
+    let dim1 = metadata[&"dim1"];
+
+	let arr_dims = arrayfire::Dim4::new(&[dim1, dim0, 1, 1]);
+	let outarr = arrayfire::Array::new(&vector, arr_dims);
+
+
+	arrayfire::transpose(&outarr,false)
+}
+

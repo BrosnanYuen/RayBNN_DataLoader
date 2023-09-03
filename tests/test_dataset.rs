@@ -142,5 +142,6 @@ fn test_dataset() {
     ];
     assert_eq!(read_test2, read_act2);
     assert_eq!(metadata[&"dim0"], 7);
+    assert_eq!(metadata[&"dim1"], 4);
 
 }
