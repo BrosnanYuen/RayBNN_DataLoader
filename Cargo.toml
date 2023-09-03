@@ -40,8 +40,5 @@ name = "RayBNN_DataLoader"
 path = "src/lib.rs"
 
 
-[[example]]
-name = "Linear_ODE"
-path = "examples/Linear_ODE.rs"
 
 

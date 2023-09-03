@@ -117,10 +117,11 @@ fn test_dataset() {
         45,3,1,100,
         -2,3,  5,61,
         344,222,33,-10,
-        751,-32,12,92
+        751,-32,12,92,
+        431,585,-4,215
     ];
     assert_eq!(read_test2, read_act2);
-    assert_eq!(metadata[&"dim0"], 6);
+    assert_eq!(metadata[&"dim0"], 7);
 
 
 
@@ -136,9 +137,10 @@ fn test_dataset() {
         45,3,1,100,
         -2,3,  5,61,
         344,222,33,-10,
-        751,-32,12,92
+        751,-32,12,92,
+        431,585,-4,215
     ];
     assert_eq!(read_test2, read_act2);
-    assert_eq!(metadata[&"dim0"], 6);
+    assert_eq!(metadata[&"dim0"], 7);
 
 }
