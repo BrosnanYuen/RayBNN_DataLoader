@@ -24,4 +24,17 @@ fn test_dataset_csv2() {
     assert_eq!(outstr_cpu, outstr);
 
 
+
+
+
+    let inx_cpu: Vec<i64> = vec![0, -4, 1, -9,   3];
+
+    let outstr: String = String::from("0,-4,1,-9,3");
+    let outstr_cpu = RayBNN_DataLoader::Dataset::CSV::vec_cpu_to_str::<i64>(&inx_cpu);
+    assert_eq!(outstr_cpu, outstr);
+
+
+
+
+
 }
