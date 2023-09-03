@@ -48,12 +48,12 @@ pub fn file_to_vec_cpu<Z: std::str::FromStr + Send + Sync>(
 
 	let contents = fs::read_to_string(filename).expect("error");
 
-	let tmp = contents.par_split('\n');
+	let tmp = contents.par_split('\n').map(str_to_vec_cpu );
 
     metadata.insert("dims", 2);
     metadata.insert("dim0", (tmp.clone().count() as u64) - 1);
     
-    (tmp.map(str_to_vec_cpu ).flatten_iter().collect(),metadata)
+    (tmp.flatten_iter().collect(),metadata)
 }
 
 
