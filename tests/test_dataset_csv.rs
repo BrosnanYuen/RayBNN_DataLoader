@@ -234,4 +234,40 @@ fn test_dataset_csv() {
 
 
 
+
+    let read_test = RayBNN_DataLoader::Dataset::CSV::file_to_arrayfire::<i64>(
+    	"./test_data/read_test2.dat"
+    );
+
+    assert_eq!(read_test.dims()[0], 7);
+    assert_eq!(read_test.dims()[1], 4);
+
+
+	let row0 = arrayfire::row(&read_test,0);
+
+	let mut row0_cpu = vec!(i64::default();row0.elements());
+	row0.host(&mut row0_cpu);
+
+	let mut row0_act: Vec<i64> = vec![233,-4233,234,631,];
+
+	assert_eq!(row0_cpu, row0_act);
+
+
+
+
+
+
+
+	let row1 = arrayfire::row(&read_test,1);
+
+	let mut row1_cpu = vec!(i64::default();row1.elements());
+	row1.host(&mut row1_cpu);
+
+	let mut row1_act: Vec<i64> = vec![24, 222,-1,23,];
+
+
+	assert_eq!(row1_cpu, row1_act);
+
+
+
 }
