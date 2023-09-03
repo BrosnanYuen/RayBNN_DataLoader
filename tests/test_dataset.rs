@@ -8,6 +8,8 @@ const BACK_END: arrayfire::Backend = arrayfire::Backend::CUDA;
 const DEVICE: i32 = 0;
 
 
+use rayon::prelude::*;
+
 
 
 #[test]
@@ -63,6 +65,35 @@ fn test_dataset() {
     let instr: String = String::from("aaa, bbb, ccc");
     let outvec_cpu = RayBNN_DataLoader::Dataset::CSV::str_to_vec_cpu::<u64>(&instr);
     assert_eq!(outvec_cpu.len(), 0);
+
+
+
+
+
+
+
+
+
+    let mut read_test = RayBNN_DataLoader::Dataset::CSV::file_to_vec_cpu::<f64>(
+    	"./test_data/read_test.dat"
+    );
+
+
+	let mut read_act: Vec<f64> = vec![
+		-0.004866,-0.0018368,0.0049874,0.0023202,-4.9179e-05,-0.0033278,
+		-0.0082358,-0.006966,-0.0033703,0.0038264,0.0047417,0.0017643,
+		0.0013178,-0.00061582,0.008669,3.5362e-05,-0.00080587,0.0044014,
+		0.00012772,-0.00088359,-0.0072174,0.0043621,0.0046395,2.6826e-05
+	];
+
+	read_act = read_act.par_iter().map(|x|  (x * 1.0e10).round() / 1.0e10 ).collect::<Vec<f64>>();
+
+	read_test = read_test.par_iter().map(|x|  (x * 1.0e10).round() / 1.0e10 ).collect::<Vec<f64>>();
+
+
+	assert_eq!(read_test, read_act);
+
+
 
 
 }

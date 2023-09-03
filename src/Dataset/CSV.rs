@@ -38,3 +38,13 @@ pub fn str_to_vec_cpu<Z: std::str::FromStr>(
 
 
 
+
+pub fn file_to_vec_cpu<Z: std::str::FromStr + Send + Sync>(
+	filename: &str
+) -> Vec<Z>  {
+	let contents = fs::read_to_string(filename).expect("error");
+
+	contents.par_split('\n').map(str_to_vec_cpu ).flatten_iter().collect()
+}
+
+
