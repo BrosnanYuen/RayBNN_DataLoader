@@ -8,6 +8,7 @@ use std::fs;
 
 use std::collections::HashMap;
 
+use std::fmt::Debug;
 
 pub fn str_to_vec_cpu<Z: std::str::FromStr>(
 	instr: &str
@@ -82,4 +83,23 @@ pub fn file_to_arrayfire<Z: std::str::FromStr + arrayfire::HasAfEnum + Send + Sy
 
 	arrayfire::transpose(&outarr,false)
 }
+
+
+
+
+pub fn vec_cpu_to_str<Z: arrayfire::HasAfEnum>(
+	invec: &Vec<Z>
+	) -> String  {
+
+	let mut s0 = format!("{:?}",invec.clone());
+	s0 = s0.replace("[", "");
+	s0 = s0.replace("]", "");
+	s0 = s0.replace(" ", "");
+
+	s0
+}
+
+
+
+
 
