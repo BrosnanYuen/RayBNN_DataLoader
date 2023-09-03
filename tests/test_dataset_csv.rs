@@ -151,11 +151,87 @@ fn test_dataset_csv() {
 
 
 
-
+    /* 
     let arr = RayBNN_DataLoader::Dataset::CSV::file_to_arrayfire::<f64>(
     	"./test_data/read_test.dat"
     );
 
     arrayfire::print_gen("arr".to_string(), &arr,Some(6));
+    */
+
+
+
+    let read_test = RayBNN_DataLoader::Dataset::CSV::file_to_arrayfire::<f64>(
+    	"./test_data/read_test.dat"
+    );
+
+    assert_eq!(read_test.dims()[0], 4);
+    assert_eq!(read_test.dims()[1], 6);
+
+
+	let row0 = arrayfire::row(&read_test,0);
+
+	let mut row0_cpu = vec!(f64::default();row0.elements());
+	row0.host(&mut row0_cpu);
+
+	let mut row0_act: Vec<f64> = vec![-0.004866,-0.0018368,0.0049874,0.0023202,-4.9179e-05,-0.0033278];
+
+	row0_act = row0_act.par_iter().map(|x|  (x * 1.0e10).round() / 1.0e10 ).collect::<Vec<f64>>();
+
+	row0_cpu = row0_cpu.par_iter().map(|x|  (x * 1.0e10).round() / 1.0e10 ).collect::<Vec<f64>>();
+
+	assert_eq!(row0_cpu, row0_act);
+
+
+
+
+
+
+
+
+
+
+	let row1 = arrayfire::row(&read_test,1);
+
+	let mut row1_cpu = vec!(f64::default();row1.elements());
+	row1.host(&mut row1_cpu);
+
+	let mut row1_act: Vec<f64> = vec![-0.0082358,-0.006966,-0.0033703,0.0038264,0.0047417,0.0017643];
+
+	row1_act = row1_act.par_iter().map(|x|  (x * 1.0e10).round() / 1.0e10 ).collect::<Vec<f64>>();
+
+	row1_cpu = row1_cpu.par_iter().map(|x|  (x * 1.0e10).round() / 1.0e10 ).collect::<Vec<f64>>();
+
+	assert_eq!(row1_cpu, row1_act);
+
+
+
+
+
+
+
+
+
+
+
+	let row2 = arrayfire::row(&read_test,2);
+
+	let mut row2_cpu = vec!(f64::default();row2.elements());
+	row2.host(&mut row2_cpu);
+
+	let mut row2_act: Vec<f64> = vec![0.0013178,-0.00061582,0.008669,3.5362e-05,-0.00080587,0.0044014];
+
+	row2_act = row2_act.par_iter().map(|x|  (x * 1.0e10).round() / 1.0e10 ).collect::<Vec<f64>>();
+
+	row2_cpu = row2_cpu.par_iter().map(|x|  (x * 1.0e10).round() / 1.0e10 ).collect::<Vec<f64>>();
+
+	assert_eq!(row2_cpu, row2_act);
+
+
+
+
+
+
+
 
 }
