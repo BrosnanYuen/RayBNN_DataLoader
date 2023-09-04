@@ -33,3 +33,19 @@ let read_test = RayBNN_DataLoader::Dataset::CSV::file_to_arrayfire::<f64>(
     "./test_data/read_test.dat"
 );
 ```
+
+# Write a float 32 bit CPU vector to CSV file
+```
+let mut metadata: HashMap<&str,u64> = HashMap::new();
+
+metadata.insert("dim0", 11);
+metadata.insert("dim1", 3);
+
+RayBNN_DataLoader::Dataset::CSV::write_vec_cpu_to_csv::<f32>(
+    "./randvec2.csv",
+    &randvec,
+    &metadata
+);
+```
+
+
