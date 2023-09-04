@@ -222,4 +222,76 @@ fn test_dataset_csv2() {
     let row0_act = vec![47,  50,  53,  56];
     assert_eq!(row0_cpu, row0_act);
 
+
+
+
+
+
+
+
+
+
+
+
+	let randarrz_dims = arrayfire::Dim4::new(&[5,11,1,1]);
+	let randarrz = arrayfire::randn::<f64>(randarrz_dims);
+
+	RayBNN_DataLoader::Dataset::CSV::write_arrayfire_to_csv::<f64>(
+		"./randvec.csv",
+		&randarrz
+	);
+
+    //arrayfire::print_gen("randarrz".to_string(), &randarrz,Some(6));
+
+	let arrfromfile = RayBNN_DataLoader::Dataset::CSV::file_to_arrayfire::<f64>(
+		"./randvec.csv"
+    );
+
+    //arrayfire::print_gen("arrfromfile".to_string(), &arrfromfile,Some(6));
+
+	let subarr = randarrz-arrfromfile;
+	let absval = arrayfire::abs(&subarr);
+	let (r0,r1) = arrayfire::mean_all(&absval);
+
+	assert!(r0 < 1e-6);
+	assert!(r1 < 1e-6);
+
+
+    std::fs::remove_file("./randvec.csv");
+
+
+
+
+
+
+
+
+
+	let randarrz_dims = arrayfire::Dim4::new(&[5,11,1,1]);
+	let randarrz = arrayfire::randu::<u32>(randarrz_dims);
+
+	RayBNN_DataLoader::Dataset::CSV::write_arrayfire_to_csv::<u32>(
+		"./randvec.csv",
+		&randarrz
+	);
+
+    //arrayfire::print_gen("randarrz".to_string(), &randarrz,Some(6));
+
+	let arrfromfile = RayBNN_DataLoader::Dataset::CSV::file_to_arrayfire::<u32>(
+		"./randvec.csv"
+    );
+
+    //arrayfire::print_gen("arrfromfile".to_string(), &arrfromfile,Some(6));
+
+	let subarr = randarrz-arrfromfile;
+	let absval = arrayfire::abs(&subarr);
+	let (r0,r1) = arrayfire::mean_all(&absval);
+
+	assert!(r0 < 1e-6);
+	assert!(r1 < 1e-6);
+
+
+    std::fs::remove_file("./randvec.csv");
+
+
 }
