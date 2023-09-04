@@ -89,7 +89,7 @@ pub fn file_to_arrayfire<Z: std::str::FromStr + arrayfire::HasAfEnum + Send + Sy
 
 
 pub fn vec_cpu_to_str<Z: arrayfire::HasAfEnum + Sync + Send>(
-	invec: &Vec<Z>
+	invec: &[Z]
 	) -> String  {
 
 	let mut s0 = format!("{:?}",invec.clone());
@@ -115,7 +115,7 @@ pub fn write_vec_cpu_to_csv<Z: arrayfire::HasAfEnum + Sync + Send>(
     let dim1 = metadata[&"dim1"];
 
 	//let mut wtr0 = vec_cpu_to_str::<Z>(invec);
-	let mut tmp: String = invec.par_chunks_exact(dim1 as usize).map(|x| vec_cpu_to_str(&x.to_vec()) +"\n" ).collect();
+	let mut tmp: String = invec.par_chunks_exact(dim1 as usize).map(vec_cpu_to_str ).map(|x| x+"\n").collect();
 	tmp.pop();
 
 
