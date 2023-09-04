@@ -80,7 +80,6 @@ fn test_dataset_csv2() {
 
     let mut metadata: HashMap<&str,u64> = HashMap::new();
 	let randvec: Vec<i32> = rand::thread_rng().sample_iter(Standard).take(3*11).collect();
-    //println!("{:?}", randvec);
 
     metadata.insert("dim0", 11);
     metadata.insert("dim1", 3);
@@ -93,6 +92,77 @@ fn test_dataset_csv2() {
 
 
     let (mut read_test2,metadata) = RayBNN_DataLoader::Dataset::CSV::file_to_vec_cpu::<i32>(
+    	"./randvec2.csv"
+    );
+
+    assert_eq!(metadata[&"dim0"], 11);
+    assert_eq!(metadata[&"dim1"], 3);
+
+    assert_eq!(randvec,read_test2);
+
+    std::fs::remove_file("./randvec2.csv");
+
+
+
+
+
+
+
+
+
+
+
+    let mut metadata: HashMap<&str,u64> = HashMap::new();
+	let randvec: Vec<u32> = rand::thread_rng().sample_iter(Standard).take(3*11).collect();
+
+    metadata.insert("dim0", 11);
+    metadata.insert("dim1", 3);
+	
+	RayBNN_DataLoader::Dataset::CSV::write_vec_cpu_to_csv::<u32>(
+		"./randvec2.csv",
+		&randvec,
+        &metadata
+	);
+
+
+    let (mut read_test2,metadata) = RayBNN_DataLoader::Dataset::CSV::file_to_vec_cpu::<u32>(
+    	"./randvec2.csv"
+    );
+
+    assert_eq!(metadata[&"dim0"], 11);
+    assert_eq!(metadata[&"dim1"], 3);
+
+    assert_eq!(randvec,read_test2);
+
+    std::fs::remove_file("./randvec2.csv");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    let mut metadata: HashMap<&str,u64> = HashMap::new();
+	let randvec: Vec<f32> = rand::thread_rng().sample_iter(Standard).take(3*11).collect();
+
+    metadata.insert("dim0", 11);
+    metadata.insert("dim1", 3);
+	
+	RayBNN_DataLoader::Dataset::CSV::write_vec_cpu_to_csv::<f32>(
+		"./randvec2.csv",
+		&randvec,
+        &metadata
+	);
+
+
+    let (mut read_test2,metadata) = RayBNN_DataLoader::Dataset::CSV::file_to_vec_cpu::<f32>(
     	"./randvec2.csv"
     );
 
