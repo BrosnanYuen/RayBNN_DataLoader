@@ -214,6 +214,12 @@ fn test_dataset_csv2() {
 
     read_test = arrayfire::sum(&read_test, 0);
 
-    arrayfire::print_gen("read_test".to_string(), &read_test,Some(6));
+    //arrayfire::print_gen("read_test".to_string(), &read_test,Some(6));
+
+    let mut row0_cpu = vec!(i32::default();read_test.elements());
+	read_test.host(&mut row0_cpu);
+
+    let row0_act = vec![47,  50,  53,  56];
+    assert_eq!(row0_cpu, row0_act);
 
 }
