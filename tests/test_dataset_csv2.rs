@@ -10,7 +10,8 @@ const DEVICE: i32 = 0;
 
 use rayon::prelude::*;
 
-
+use rand::{distributions::Standard, Rng};
+use std::collections::HashMap;
 
 #[test]
 fn test_dataset_csv2() {
@@ -70,5 +71,24 @@ fn test_dataset_csv2() {
     let outstr_cpu = RayBNN_DataLoader::Dataset::CSV::vec_cpu_to_str::<u64>(&inx_cpu);
     assert_eq!(outstr_cpu, outstr);
 
+
+
+
+
+
+
+
+    let mut metadata: HashMap<&str,u64> = HashMap::new();
+	let randvec: Vec<f64> = rand::thread_rng().sample_iter(Standard).take(3*7).collect();
+    println!("{:?}", randvec);
+
+    metadata.insert("dim0", 7);
+    metadata.insert("dim1", 3);
+	
+	RayBNN_DataLoader::Dataset::CSV::write_vec_cpu_to_csv(
+		"./randvec2.csv",
+		&randvec,
+        &metadata
+	);
 
 }

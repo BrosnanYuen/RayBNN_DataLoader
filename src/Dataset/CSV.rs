@@ -107,7 +107,7 @@ pub fn vec_cpu_to_str<Z: arrayfire::HasAfEnum + Sync + Send>(
 pub fn write_vec_cpu_to_csv<Z: arrayfire::HasAfEnum + Sync + Send>(
 	filename: &str,
 	invec: &Vec<Z>,
-	metadata: HashMap<&str,u64>,
+	metadata: &HashMap<&str,u64>,
 	)
 {
 
@@ -115,7 +115,7 @@ pub fn write_vec_cpu_to_csv<Z: arrayfire::HasAfEnum + Sync + Send>(
     let dim1 = metadata[&"dim1"];
 
 	//let mut wtr0 = vec_cpu_to_str::<Z>(invec);
-	let tmp: String = invec.par_chunks_exact(dim0 as usize).map(|x| vec_cpu_to_str(&x.to_vec()) +"\n" ).collect();
+	let tmp: String = invec.par_chunks_exact(dim1 as usize).map(|x| vec_cpu_to_str(&x.to_vec()) +"\n" ).collect();
 	
 	let mut file0 = File::create(filename).unwrap();
 	writeln!(file0, "{}", tmp);
