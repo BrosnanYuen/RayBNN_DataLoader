@@ -92,12 +92,14 @@ fn test_dataset_csv2() {
 	);
 
 
-    let (mut read_test2,metadata) = RayBNN_DataLoader::Dataset::CSV::file_to_vec_cpu::<i64>(
+    let (mut read_test2,metadata) = RayBNN_DataLoader::Dataset::CSV::file_to_vec_cpu::<i32>(
     	"./randvec2.csv"
     );
 
     assert_eq!(metadata[&"dim0"], 11);
     assert_eq!(metadata[&"dim1"], 3);
 
+    assert_eq!(randvec,read_test2);
 
+    std::fs::remove_file("./randvec2.csv");
 }
