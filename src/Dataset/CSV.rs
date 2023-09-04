@@ -163,11 +163,11 @@ pub fn write_arrayfire_to_csv<Z: arrayfire::HasAfEnum + Sync + Send>(
 
 
 
-pub fn file_to_hash_cpu(
+pub fn file_to_hash_cpu<Z: std::str::FromStr + Send + Sync>(
 	filename: &str,
 	sample_size: u64,
 	batch_size: u64
-	) -> nohash_hasher::IntMap<u64, Vec<f64> >  {
+	) -> nohash_hasher::IntMap<u64, Vec<Z> >  {
 
 	
 	
