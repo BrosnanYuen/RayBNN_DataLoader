@@ -127,25 +127,27 @@ pub fn write_vec_cpu_to_csv<Z: arrayfire::HasAfEnum + Sync + Send>(
 
 
 
-pub fn write_arrayfire_to_csv(
+pub fn write_arrayfire_to_csv<Z: arrayfire::HasAfEnum + Sync + Send>(
 	filename: &str,
-	arr: &arrayfire::Array<f64>
+	arr: &arrayfire::Array<Z>
 	)
 {
 
-	let mut wtr0: Vec<String> = Vec::new();
+	let mut metadata: HashMap<&str,u64> = HashMap::new();
 
-	let item_num = arr.dims()[0] as i64;
+	metadata.insert("dim0", arr.dims()[0]);
+    metadata.insert("dim1", arr.dims()[1]);
 
-	for i in 0..item_num
-	{
-		let cur_item = arrayfire::row(arr,i);
-		let s0 = vec_to_str(&cur_item);
-		wtr0.push(s0);
-	}
-	
 
-	let mut file0 = File::create(filename).unwrap();
-	writeln!(file0, "{}", wtr0.join("\n"));
+	let tmp = arrayfire::transpose(arr, false);
+
+	let mut invec = vec!(Z::default();tmp.elements());
+	tmp.host(&mut invec);
+
+	write_vec_cpu_to_csv::<Z>(
+		filename,
+		&invec,
+		&metadata
+	);
 }
 
