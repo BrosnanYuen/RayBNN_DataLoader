@@ -172,4 +172,48 @@ fn test_dataset_csv2() {
     assert_eq!(randvec,read_test2);
 
     std::fs::remove_file("./randvec2.csv");
+
+
+
+
+
+
+
+
+
+
+    let mut metadata: HashMap<&str,u64> = HashMap::new();
+    let write_vec: Vec<i32> = vec![
+        1,-2,3,-4,
+        -5,6,-7,8,
+        9,10,11,12,
+        13,14,15,16,
+        -17,18,-19,20,
+        21,-22,23,-24,
+        25,26,27,28
+    ];
+
+    metadata.insert("dim0", 7);
+    metadata.insert("dim1", 4);
+	
+	RayBNN_DataLoader::Dataset::CSV::write_vec_cpu_to_csv::<i32>(
+		"./test_write.csv",
+		&write_vec,
+        &metadata
+	);
+
+
+    let mut read_test = RayBNN_DataLoader::Dataset::CSV::file_to_arrayfire::<i32>(
+    	"./test_write.csv"
+    );
+
+    assert_eq!(read_test.dims()[0], 7);
+    assert_eq!(read_test.dims()[1], 4);
+
+    std::fs::remove_file("./test_write.csv");
+
+    read_test = arrayfire::sum(&read_test, 0);
+
+    arrayfire::print_gen("read_test".to_string(), &read_test,Some(6));
+
 }
