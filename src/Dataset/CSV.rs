@@ -11,6 +11,9 @@ use std::collections::HashMap;
 use std::fs::File;
 use std::io::Write;
 
+
+use nohash_hasher;
+
 pub fn str_to_vec_cpu<Z: std::str::FromStr>(
 	instr: &str
 ) -> Vec<Z>  {
@@ -149,5 +152,41 @@ pub fn write_arrayfire_to_csv<Z: arrayfire::HasAfEnum + Sync + Send>(
 		&invec,
 		&metadata
 	);
+}
+
+
+
+
+
+
+
+
+
+
+pub fn file_to_hash_cpu(
+	filename: &str,
+	sample_size: u64,
+	batch_size: u64
+	) -> nohash_hasher::IntMap<u64, Vec<f64> >  {
+
+	
+	
+
+	let arr = file_to_vec_cpu(filename);
+
+	let arr_size = arr.len() as u64;
+	let item_num = (arr_size/(sample_size*batch_size));
+
+	let mut lookup: nohash_hasher::IntMap<u64, Vec<f64> >  = nohash_hasher::IntMap::default();
+	let mut start:usize = 0;
+	let mut end:usize = 0;
+	for i in 0..item_num
+	{
+		start = (i*(sample_size*batch_size)) as usize;
+		end = ((i+1)*(sample_size*batch_size)) as usize;
+		lookup.insert(i, (&arr[start..end]).to_vec() );
+	}
+
+	lookup
 }
 
