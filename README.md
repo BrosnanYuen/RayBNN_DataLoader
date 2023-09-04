@@ -49,3 +49,11 @@ RayBNN_DataLoader::Dataset::CSV::write_vec_cpu_to_csv::<f32>(
 ```
 
 
+
+# Write a float 64 bit arrayfire to CSV file
+```
+RayBNN_DataLoader::Dataset::CSV::write_arrayfire_to_csv::<f64>(
+    "./randvec.csv",
+    &arr
+);
+```

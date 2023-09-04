@@ -294,4 +294,43 @@ fn test_dataset_csv2() {
     std::fs::remove_file("./randvec.csv");
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+	let randarrz_dims = arrayfire::Dim4::new(&[5,11,1,1]);
+	let randarrz = arrayfire::randu::<i32>(randarrz_dims);
+
+	RayBNN_DataLoader::Dataset::CSV::write_arrayfire_to_csv::<i32>(
+		"./randvec.csv",
+		&randarrz
+	);
+
+    //arrayfire::print_gen("randarrz".to_string(), &randarrz,Some(6));
+
+	let arrfromfile = RayBNN_DataLoader::Dataset::CSV::file_to_arrayfire::<i32>(
+		"./randvec.csv"
+    );
+
+    //arrayfire::print_gen("arrfromfile".to_string(), &arrfromfile,Some(6));
+
+	let subarr = randarrz-arrfromfile;
+	let absval = arrayfire::abs(&subarr);
+	let (r0,r1) = arrayfire::mean_all(&absval);
+
+	assert!(r0 < 1e-6);
+	assert!(r1 < 1e-6);
+
+
+    std::fs::remove_file("./randvec.csv");
+
+
 }
