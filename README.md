@@ -5,6 +5,15 @@ Read CSV, numpy, and binary files to Rust vectors of f16, f32, f64, u8, u16, u32
 
 Read CSV, numpy, and binary files to Arrayfire GPU arrays of f16, f32, f64, u8, u16, u32, u64, i8, i16, i32, i64
 
+# Add to Cargo.toml
+```
+arrayfire = { version = "3.8.1", package = "arrayfire_fork" }
+rayon = "1.7.0"
+num = "0.4.1"
+num-traits = "0.2.16"
+half = { version = "2.3.1" , features = ["num-traits"] }
+RayBNN_DataLoader = "0.1.1"
+```
 
 # List of Examples
 
