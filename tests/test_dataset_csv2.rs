@@ -79,16 +79,25 @@ fn test_dataset_csv2() {
 
 
     let mut metadata: HashMap<&str,u64> = HashMap::new();
-	let randvec: Vec<f64> = rand::thread_rng().sample_iter(Standard).take(3*7).collect();
-    println!("{:?}", randvec);
+	let randvec: Vec<i32> = rand::thread_rng().sample_iter(Standard).take(3*11).collect();
+    //println!("{:?}", randvec);
 
-    metadata.insert("dim0", 7);
+    metadata.insert("dim0", 11);
     metadata.insert("dim1", 3);
 	
-	RayBNN_DataLoader::Dataset::CSV::write_vec_cpu_to_csv(
+	RayBNN_DataLoader::Dataset::CSV::write_vec_cpu_to_csv::<i32>(
 		"./randvec2.csv",
 		&randvec,
         &metadata
 	);
+
+
+    let (mut read_test2,metadata) = RayBNN_DataLoader::Dataset::CSV::file_to_vec_cpu::<i64>(
+    	"./randvec2.csv"
+    );
+
+    assert_eq!(metadata[&"dim0"], 11);
+    assert_eq!(metadata[&"dim1"], 3);
+
 
 }
