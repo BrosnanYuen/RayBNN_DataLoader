@@ -152,3 +152,42 @@ pub fn file_to_hash_cpu<Z: std::str::FromStr + Send + Sync + Clone>(
 	lookup
 }
 
+
+
+
+
+
+
+
+pub fn file_to_hash_arrayfire(
+	filename: &str,
+	sample_size: u64,
+	batch_size: u64,
+	dims: arrayfire::Dim4
+	) -> nohash_hasher::IntMap<u64, arrayfire::Array<f64>  >  {
+
+
+	let mut lookup2: nohash_hasher::IntMap<u64, arrayfire::Array<f64>  >   = nohash_hasher::IntMap::default();
+
+	let lookup = file_to_hash_cpu(
+		filename,
+		sample_size,
+		batch_size
+	);
+
+	let item_num = lookup.len() as u64;
+
+    let temp_dims = arrayfire::Dim4::new(&[1,1,1,1]);
+
+	let mut temparr = arrayfire::constant::<f64>(0.0, temp_dims);
+	for i in 0..item_num
+	{
+		temparr = arrayfire::Array::new(&lookup[&i], dims);
+
+		lookup2.insert(i, temparr);
+	}
+
+
+	lookup2
+}
+
