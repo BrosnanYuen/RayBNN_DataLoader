@@ -161,8 +161,6 @@ pub fn file_to_hash_cpu<Z: std::str::FromStr + Send + Sync + Clone>(
 
 pub fn file_to_hash_arrayfire<Z: std::str::FromStr + arrayfire::HasAfEnum + Send + Sync + Clone>(
 	filename: &str,
-	sample_size: u64,
-	batch_size: u64,
 	dims: arrayfire::Dim4
 	) -> (nohash_hasher::IntMap<u64, arrayfire::Array<Z>  >, HashMap<&str,u64>)  {
 
@@ -171,8 +169,8 @@ pub fn file_to_hash_arrayfire<Z: std::str::FromStr + arrayfire::HasAfEnum + Send
 
 	let (lookup, metadata) = file_to_hash_cpu(
 		filename,
-		sample_size,
-		batch_size
+		dims[1],
+		dims[0]
 	);
 
 	let item_num = lookup.len() as u64;

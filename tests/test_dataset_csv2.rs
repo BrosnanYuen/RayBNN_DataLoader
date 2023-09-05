@@ -394,8 +394,6 @@ fn test_dataset_csv2() {
 	let arr_dims = arrayfire::Dim4::new(&[5, 7, 1, 1]);
 	let (hashdata,metadata) = RayBNN_DataLoader::Dataset::CSV::file_to_hash_arrayfire::<f64>(
     	"./test_data/dataloader.csv",
-    	7,
-		5,
 		arr_dims,
     );
 
