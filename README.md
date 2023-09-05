@@ -5,6 +5,17 @@ Read CSV, numpy, and binary files to Rust vectors of f16, f32, f64, u8, u16, u32
 
 Read CSV, numpy, and binary files to Arrayfire GPU arrays of f16, f32, f64, u8, u16, u32, u64, i8, i16, i32, i64
 
+
+# Install Arrayfire
+
+Install the Arrayfire 3.9.0 binaries at [https://arrayfire.com/binaries/](https://arrayfire.com/binaries/)
+
+or build from source
+[https://github.com/arrayfire/arrayfire/wiki/Getting-ArrayFire](https://github.com/arrayfire/arrayfire/wiki/Getting-ArrayFire)
+
+
+
+
 # Add to Cargo.toml
 ```
 arrayfire = { version = "3.8.1", package = "arrayfire_fork" }
