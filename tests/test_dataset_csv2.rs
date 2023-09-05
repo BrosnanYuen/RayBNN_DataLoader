@@ -346,7 +346,7 @@ fn test_dataset_csv2() {
 
 
 
-	let hashdata = clusterdiffeq::export::dataloader_f64::file_to_hash_cpu(
+	let hashdata = RayBNN_DataLoader::Dataset::CSV::file_to_hash_cpu(
     	"./test_data/dataloader.csv",
     	7,
 		5
