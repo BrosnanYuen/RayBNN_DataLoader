@@ -159,7 +159,7 @@ pub fn file_to_hash_cpu<Z: std::str::FromStr + Send + Sync + Clone>(
 
 
 
-pub fn file_to_hash_arrayfire<Z: std::str::FromStr + Send + Sync + Clone>(
+pub fn file_to_hash_arrayfire<Z: std::str::FromStr + arrayfire::HasAfEnum + Send + Sync + Clone>(
 	filename: &str,
 	sample_size: u64,
 	batch_size: u64,
@@ -177,12 +177,10 @@ pub fn file_to_hash_arrayfire<Z: std::str::FromStr + Send + Sync + Clone>(
 
 	let item_num = lookup.len() as u64;
 
-    let temp_dims = arrayfire::Dim4::new(&[1,1,1,1]);
-
-	let mut temparr = arrayfire::constant::<f64>(0.0, temp_dims);
+    
 	for i in 0..item_num
 	{
-		temparr = arrayfire::Array::new(&lookup[&i], dims);
+		let temparr = arrayfire::Array::new(&lookup[&i], dims);
 
 		lookup2.insert(i, temparr);
 	}
