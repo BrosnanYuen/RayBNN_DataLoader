@@ -397,6 +397,9 @@ fn test_dataset_csv2() {
 		arr_dims,
     );
 
+	assert_eq!(hashdata[&0].dims()[0], 5);
+    assert_eq!(hashdata[&0].dims()[1], 7);
+
 	arrayfire::print_gen("hashdata".to_string(), &hashdata[&0],Some(6));
 
 }
