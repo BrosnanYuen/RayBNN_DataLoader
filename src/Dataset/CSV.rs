@@ -129,7 +129,7 @@ pub fn file_to_hash_cpu<Z: std::str::FromStr + Send + Sync + Clone>(
 	filename: &str,
 	sample_size: u64,
 	batch_size: u64
-	) -> nohash_hasher::IntMap<u64, Vec<Z> >  {
+	) -> (nohash_hasher::IntMap<u64, Vec<Z> >, HashMap<&str,u64>)  {
 
 	
 	
@@ -149,7 +149,7 @@ pub fn file_to_hash_cpu<Z: std::str::FromStr + Send + Sync + Clone>(
 		lookup.insert(i, (arr[start..end]).to_vec() );
 	}
 
-	lookup
+	(lookup,metadata)
 }
 
 
@@ -164,12 +164,12 @@ pub fn file_to_hash_arrayfire<Z: std::str::FromStr + arrayfire::HasAfEnum + Send
 	sample_size: u64,
 	batch_size: u64,
 	dims: arrayfire::Dim4
-	) -> nohash_hasher::IntMap<u64, arrayfire::Array<Z>  >  {
+	) -> (nohash_hasher::IntMap<u64, arrayfire::Array<Z>  >, HashMap<&str,u64>)  {
 
 
 	let mut lookup2: nohash_hasher::IntMap<u64, arrayfire::Array<Z>  >   = nohash_hasher::IntMap::default();
 
-	let lookup = file_to_hash_cpu(
+	let (lookup, metadata) = file_to_hash_cpu(
 		filename,
 		sample_size,
 		batch_size
@@ -186,6 +186,10 @@ pub fn file_to_hash_arrayfire<Z: std::str::FromStr + arrayfire::HasAfEnum + Send
 	}
 
 
-	lookup2
+	(lookup2,metadata)
 }
+
+
+
+
 
