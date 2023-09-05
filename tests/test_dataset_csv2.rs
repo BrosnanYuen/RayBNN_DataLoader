@@ -290,7 +290,7 @@ fn test_dataset_csv2() {
 
 
 
-	let hashdata = RayBNN_DataLoader::Dataset::CSV::file_to_hash_cpu::<f64>(
+	let (hashdata,metadata) = RayBNN_DataLoader::Dataset::CSV::file_to_hash_cpu::<f64>(
     	"./test_data/dataloader.csv",
     	7,
 		5
