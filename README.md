@@ -43,6 +43,20 @@ let read_test = RayBNN_DataLoader::Dataset::CSV::file_to_arrayfire::<f64>(
 );
 ```
 
+
+# Read a CSV file to a floating point 64 bit HashMap
+```
+let hashdata = RayBNN_DataLoader::Dataset::CSV::file_to_hash_cpu::<f64>(
+    "./test_data/dataloader.csv",
+    7,
+    5
+);
+```
+
+
+
+
+
 # Write a float 32 bit CPU vector to CSV file
 ```
 let mut metadata: HashMap<&str,u64> = HashMap::new();
@@ -66,3 +80,5 @@ RayBNN_DataLoader::Dataset::CSV::write_arrayfire_to_csv::<f64>(
     &arr
 );
 ```
+
+
