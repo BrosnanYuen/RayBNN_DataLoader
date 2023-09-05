@@ -381,4 +381,24 @@ fn test_dataset_csv2() {
 	assert_eq!(vec3_pred, vec3_act);
 
 
+
+
+
+
+
+
+
+
+
+
+	let arr_dims = arrayfire::Dim4::new(&[7, 5, 1, 1]);
+	let (hashdata,metadata) = RayBNN_DataLoader::Dataset::CSV::file_to_hash_arrayfire::<f64>(
+    	"./test_data/dataloader.csv",
+    	7,
+		5,
+		arr_dims,
+    );
+
+	arrayfire::print_gen("hashdata".to_string(), &hashdata[&0],Some(6));
+
 }
