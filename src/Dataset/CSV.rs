@@ -163,7 +163,7 @@ pub fn write_arrayfire_to_csv<Z: arrayfire::HasAfEnum + Sync + Send>(
 
 
 
-pub fn file_to_hash_cpu<Z: std::str::FromStr + Send + Sync>(
+pub fn file_to_hash_cpu<Z: std::str::FromStr + Send + Sync + Clone>(
 	filename: &str,
 	sample_size: u64,
 	batch_size: u64
@@ -172,12 +172,12 @@ pub fn file_to_hash_cpu<Z: std::str::FromStr + Send + Sync>(
 	
 	
 
-	let arr = file_to_vec_cpu(filename);
+	let (arr,metadata) = file_to_vec_cpu(filename);
 
 	let arr_size = arr.len() as u64;
 	let item_num = (arr_size/(sample_size*batch_size));
 
-	let mut lookup: nohash_hasher::IntMap<u64, Vec<f64> >  = nohash_hasher::IntMap::default();
+	let mut lookup: nohash_hasher::IntMap<u64, Vec<Z> >  = nohash_hasher::IntMap::default();
 	let mut start:usize = 0;
 	let mut end:usize = 0;
 	for i in 0..item_num
