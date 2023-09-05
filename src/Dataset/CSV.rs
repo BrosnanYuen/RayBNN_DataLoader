@@ -184,7 +184,7 @@ pub fn file_to_hash_cpu<Z: std::str::FromStr + Send + Sync + Clone>(
 	{
 		start = (i*(sample_size*batch_size)) as usize;
 		end = ((i+1)*(sample_size*batch_size)) as usize;
-		lookup.insert(i, (&arr[start..end]).to_vec() );
+		lookup.insert(i, (arr[start..end]).to_vec() );
 	}
 
 	lookup
