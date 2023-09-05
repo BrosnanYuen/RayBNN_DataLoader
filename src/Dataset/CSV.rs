@@ -159,15 +159,15 @@ pub fn file_to_hash_cpu<Z: std::str::FromStr + Send + Sync + Clone>(
 
 
 
-pub fn file_to_hash_arrayfire(
+pub fn file_to_hash_arrayfire<Z: std::str::FromStr + Send + Sync + Clone>(
 	filename: &str,
 	sample_size: u64,
 	batch_size: u64,
 	dims: arrayfire::Dim4
-	) -> nohash_hasher::IntMap<u64, arrayfire::Array<f64>  >  {
+	) -> nohash_hasher::IntMap<u64, arrayfire::Array<Z>  >  {
 
 
-	let mut lookup2: nohash_hasher::IntMap<u64, arrayfire::Array<f64>  >   = nohash_hasher::IntMap::default();
+	let mut lookup2: nohash_hasher::IntMap<u64, arrayfire::Array<Z>  >   = nohash_hasher::IntMap::default();
 
 	let lookup = file_to_hash_cpu(
 		filename,
