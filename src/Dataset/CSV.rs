@@ -177,10 +177,12 @@ pub fn file_to_hash_arrayfire<Z: std::str::FromStr + arrayfire::HasAfEnum + Send
 
 	let item_num = lookup.len() as u64;
 
-    
+    let arr_dims = arrayfire::Dim4::new(&[dims[1], dims[0], 1, 1]);
 	for i in 0..item_num
 	{
-		let temparr = arrayfire::Array::new(&lookup[&i], dims);
+		let mut temparr = arrayfire::Array::new(&lookup[&i], arr_dims);
+
+		temparr = arrayfire::transpose(&temparr,false);
 
 		lookup2.insert(i, temparr);
 	}
