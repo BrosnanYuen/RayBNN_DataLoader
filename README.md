@@ -12,7 +12,7 @@ rayon = "1.7.0"
 num = "0.4.1"
 num-traits = "0.2.16"
 half = { version = "2.3.1" , features = ["num-traits"] }
-RayBNN_DataLoader = "0.1.1"
+RayBNN_DataLoader = "0.1.2"
 ```
 
 # List of Examples
@@ -53,9 +53,14 @@ let hashdata = RayBNN_DataLoader::Dataset::CSV::file_to_hash_cpu::<f64>(
 );
 ```
 
-
-
-
+# Read a CSV file to a floating point 64 bit HashMap with Arrayfire
+```
+let arr_dims = arrayfire::Dim4::new(&[5, 7, 1, 1]);
+let (hashdata,metadata) = RayBNN_DataLoader::Dataset::CSV::file_to_hash_arrayfire::<f64>(
+    "./test_data/dataloader.csv",
+    arr_dims,
+);
+```
 
 # Write a float 32 bit CPU vector to CSV file
 ```
