@@ -118,7 +118,7 @@ pub fn write(
 	}
 
 	for (key, value) in modeldata_string {
-		let tmp = format!("{}: {}\n", key.clone(), value.clone());
+		let tmp = format!("{}: '{}'\n", key.clone(), value.clone());
 		strvec.push(tmp.clone());
 	}
 
