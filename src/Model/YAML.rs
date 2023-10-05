@@ -105,10 +105,26 @@ pub fn write(
     modeldata_int: &HashMap<String, u64>,
 	)
 {
+	let mut strvec: Vec<String> = Vec::new();
+
 	for (key, value) in modeldata_int {
-		println!("{} / {}", key, value);
+		let tmp = format!("{}: {}\n", key.clone(), value.clone());
+		strvec.push(tmp.clone());
 	}
 
+	for (key, value) in modeldata_float {
+		let tmp = format!("{}: {}\n", key.clone(), value.clone());
+		strvec.push(tmp.clone());
+	}
+
+	for (key, value) in modeldata_string {
+		let tmp = format!("{}: {}\n", key.clone(), value.clone());
+		strvec.push(tmp.clone());
+	}
+
+
+	let mut file0 = File::create(filename).unwrap();
+	writeln!(file0, "{}", strvec);
 }
 
 
