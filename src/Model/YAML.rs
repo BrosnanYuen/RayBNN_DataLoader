@@ -19,13 +19,14 @@ use nohash_hasher;
 
 
 
-pub fn read<Z: arrayfire::HasAfEnum + Sync + Send>(
+pub fn read<Z: arrayfire::RealFloating, V: arrayfire::Scanable>(
 	filename: &str,
 
-	modeldata_float: &mut HashMap<&str,f64>,
-    modeldata_int: &mut HashMap<&str,f64>,
+	modeldata_float: &mut HashMap<&str,Z>,
+    modeldata_int: &mut HashMap<&str, V>,
 	)
 {
+
 
 
 }
