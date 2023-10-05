@@ -34,11 +34,18 @@ fn test_parse_YAML() {
     assert!(modeldata_string.contains_key("model_filename"));
     assert_eq!(modeldata_string["model_filename"].clone(), "/opt/test/");
 
-    assert!(modeldata_string.contains_key("model_filename"));
-    assert_eq!(modeldata_string["model_filename"].clone(), "/opt/test/");
 
-    
-    assert!(modeldata_string.contains_key("model_filename"));
-    assert_eq!(modeldata_string["model_filename"].clone(), "/opt/test/");
+    assert!(modeldata_string.contains_key("data_filename"));
+    assert_eq!(modeldata_string["data_filename"].clone(), "/tmp/test/");
+
+
+    assert!(modeldata_float.contains_key("version"));
+    assert_eq!(modeldata_float["version"].clone(), 1.5);
+
+    assert!(modeldata_float.contains_key("add_ratio"));
+    assert_eq!(modeldata_float["add_ratio"].clone(), 4.7);
+
+
+
 
 }
