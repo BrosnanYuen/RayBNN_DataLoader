@@ -21,7 +21,7 @@ num-traits = "0.2.16"
 half = { version = "2.3.1" , features = ["num-traits"] }
 rand = "0.8.5"
 nohash-hasher = "0.2.0"
-numpy = "0.19.0"
+npyz = "0.8.1"
 
 [dev-dependencies]
 arrayfire = { version = "3.8.1", package = "arrayfire_fork" }
@@ -31,7 +31,7 @@ num-traits = "0.2.16"
 half = { version = "2.3.1" , features = ["num-traits"] }
 rand = "0.8.5"
 nohash-hasher = "0.2.0"
-numpy = "0.19.0"
+npyz = "0.8.1"
 
 [build-dependencies]
 arrayfire = { version = "3.8.1", package = "arrayfire_fork" }
@@ -41,7 +41,7 @@ num-traits = "0.2.16"
 half = { version = "2.3.1" , features = ["num-traits"] }
 rand = "0.8.5"
 nohash-hasher = "0.2.0"
-numpy = "0.19.0"
+npyz = "0.8.1"
 
 
 [lib]
