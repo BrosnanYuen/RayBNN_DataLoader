@@ -122,9 +122,11 @@ pub fn write(
 		strvec.push(tmp.clone());
 	}
 
+	let tmpstr: String = strvec.into_par_iter().collect::<String>();
+
 
 	let mut file0 = File::create(filename).unwrap();
-	writeln!(file0, "{}", strvec);
+	writeln!(file0, "{}", tmpstr);
 }
 
 
