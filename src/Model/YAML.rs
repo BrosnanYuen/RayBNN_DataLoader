@@ -69,16 +69,21 @@ pub fn read(
 					let mut value = datasplit[1].clone().to_string();
 					value = value.replace(" ", "");
 
-
 					let value = value.parse::<f64>().unwrap();
 
-					//println!("key V{}V",key);
-					//println!("value V{}V",value);
 					modeldata_float.insert(key.clone(), value.clone());
 				}
 				else 
 				{
-					
+					let datasplit: Vec<&str> = data.split(":").collect();
+					let key = datasplit[0].clone().to_string();
+
+					let mut value = datasplit[1].clone().to_string();
+					value = value.replace(" ", "");
+
+					let value = value.parse::<u64>().unwrap();
+
+					modeldata_int.insert(key.clone(), value.clone());
 				}
 
 
