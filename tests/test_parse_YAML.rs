@@ -85,5 +85,28 @@ fn test_parse_YAML() {
         &modeldata_float,
         &modeldata_int,
     );
+    drop(modeldata_string);
+    drop(modeldata_float);
+    drop(modeldata_int);
+
+
+    let mut modeldata_string:  HashMap<String, String> = HashMap::new();
+    let mut modeldata_float:  HashMap<String, f64> = HashMap::new();
+    let mut modeldata_int:  HashMap<String, u64> = HashMap::new();
+
+    RayBNN_DataLoader::Model::YAML::read(
+        "./sample.yaml",
+    
+        &mut modeldata_string,
+        &mut modeldata_float,
+        &mut modeldata_int,
+    );
+
+    assert!(modeldata_string.contains_key("model_name"));
+    assert_eq!(modeldata_string["model_name"].clone(), "laser");
+
+    assert!(modeldata_string.contains_key("type"));
+    assert_eq!(modeldata_string["type"].clone(), "RayBNN");
+
 
 }
