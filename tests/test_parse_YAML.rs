@@ -70,8 +70,14 @@ fn test_parse_YAML() {
     let mut modeldata_int:  HashMap<String, u64> = HashMap::new();
 
     modeldata_int.insert("num_neurons".to_string(), 65612);
+    modeldata_int.insert("num_glia".to_string(), 8034);
     
+    modeldata_float.insert("growth_rate".to_string(), 3.2);
+    modeldata_float.insert("delete_rate".to_string(), 0.1);
 
+    modeldata_string.insert("model_name".to_string(), "laser".to_string());
+    modeldata_string.insert("type".to_string(), "RayBNN".to_string());
+    
     RayBNN_DataLoader::Model::YAML::write(
         "./sample.yaml",
     
