@@ -53,7 +53,11 @@ pub fn read(
 
 					let mut value = datasplit[1].clone().to_string();
 
-					
+					let datasplit: Vec<&str> = value.split("'").collect();
+
+					value = datasplit[1].clone().to_string();
+
+					println!("value V{}V",value);
 				}
 				else if data.contains(".")
 				{
