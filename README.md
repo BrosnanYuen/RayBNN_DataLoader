@@ -114,3 +114,15 @@ RayBNN_DataLoader::Model::YAML::read(
 );
 ```
 
+
+
+# Write YAML Model Information
+```
+RayBNN_DataLoader::Model::YAML::write(
+    "./sample.yaml",
+
+    &modeldata_string,
+    &modeldata_float,
+    &modeldata_int,
+);
+```

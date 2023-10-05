@@ -120,4 +120,7 @@ fn test_parse_YAML() {
     assert!(modeldata_float.contains_key("delete_rate"));
     assert_eq!(modeldata_float["delete_rate"].clone(), 0.1);
 
+
+
+    std::fs::remove_file("./sample.yaml");
 }
