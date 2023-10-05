@@ -22,8 +22,9 @@ use nohash_hasher;
 pub fn read<Z: arrayfire::RealFloating, V: arrayfire::Scanable>(
 	filename: &str,
 
-	modeldata_float: &mut HashMap<&str,Z>,
-    modeldata_int: &mut HashMap<&str, V>,
+    modeldata_string: &mut HashMap<String, String>,
+	modeldata_float: &mut HashMap<String, Z>,
+    modeldata_int: &mut HashMap<String, V>,
 	)
 {
 
