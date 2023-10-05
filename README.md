@@ -23,7 +23,8 @@ rayon = "1.7.0"
 num = "0.4.1"
 num-traits = "0.2.16"
 half = { version = "2.3.1" , features = ["num-traits"] }
-RayBNN_DataLoader = "0.1.2"
+numpy = "0.19.0"
+RayBNN_DataLoader = "0.1.4"
 ```
 
 # List of Examples
