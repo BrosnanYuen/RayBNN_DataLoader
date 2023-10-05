@@ -1,6 +1,6 @@
 # Model Version
 version: 1.0
 active_size: 1552
-add_ratio: 4.0
+add_ratio:    4.0
 model_filename:   '/opt/test/'  
 input_size: 15

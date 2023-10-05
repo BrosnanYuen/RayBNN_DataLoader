@@ -57,11 +57,20 @@ pub fn read(
 
 					value = datasplit[1].clone().to_string();
 
+					println!("key V{}V",key);
 					println!("value V{}V",value);
+					modeldata_string.insert(key.clone(), value.clone());
 				}
 				else if data.contains(".")
 				{
+					let datasplit: Vec<&str> = data.split(":").collect();
+					let key = datasplit[0].clone().to_string();
 
+					let mut value = datasplit[1].clone().to_string();
+					value = value.replace(" ", "");
+
+					println!("key V{}V",key);
+					println!("value V{}V",value);
 				}
 				else 
 				{
