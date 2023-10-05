@@ -25,6 +25,9 @@ where P: AsRef<Path>, {
 
 
 
+
+
+
 pub fn read(
 	filename: &str,
 
@@ -38,7 +41,30 @@ pub fn read(
         // Consumes the iterator, returns an (Optional) String
         for line in lines {
             if let Ok(data) = line {
-                println!("{}", data);
+				if data.contains("#")
+				{
+					continue;
+				}
+
+				if data.contains("'")
+				{
+					let datasplit: Vec<&str> = data.split(":").collect();
+					let key = datasplit[0].clone().to_string();
+
+					let mut value = datasplit[1].clone().to_string();
+
+					
+				}
+				else if data.contains(".")
+				{
+
+				}
+				else 
+				{
+					
+				}
+
+
             }
         }
     }
