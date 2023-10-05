@@ -57,8 +57,8 @@ pub fn read(
 
 					value = datasplit[1].clone().to_string();
 
-					println!("key V{}V",key);
-					println!("value V{}V",value);
+					//println!("key V{}V",key);
+					//println!("value V{}V",value);
 					modeldata_string.insert(key.clone(), value.clone());
 				}
 				else if data.contains(".")
@@ -69,8 +69,12 @@ pub fn read(
 					let mut value = datasplit[1].clone().to_string();
 					value = value.replace(" ", "");
 
-					println!("key V{}V",key);
-					println!("value V{}V",value);
+
+					let value = value.parse::<f64>().unwrap();
+
+					//println!("key V{}V",key);
+					//println!("value V{}V",value);
+					modeldata_float.insert(key.clone(), value.clone());
 				}
 				else 
 				{
