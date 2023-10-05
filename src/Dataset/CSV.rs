@@ -24,7 +24,7 @@ use crate::Dataset::ParseString::vec_cpu_to_str as vec_cpu_to_str;
 
 pub fn file_to_vec_cpu<Z: std::str::FromStr + Send + Sync>(
 	filename: &str
-) -> (Vec<Z>, HashMap<&str,u64>)  {
+) -> (Vec<Z>, HashMap<String,u64>)  {
 
     let mut metadata = HashMap::new();
 
@@ -33,16 +33,16 @@ pub fn file_to_vec_cpu<Z: std::str::FromStr + Send + Sync>(
 
 	let tmp = contents.par_split('\n').map(str_to_vec_cpu );
 
-    metadata.insert("dims", 2);
+    metadata.insert("dims".to_string(), 2);
 
     let dim0 = (tmp.clone().count() as u64) - 1;
-    metadata.insert("dim0", dim0.clone());
+    metadata.insert("dim0".to_string(), dim0.clone());
 
     let result: Vec<Z> = tmp.flatten_iter().collect();
 
     let dim1 = (result.len() as u64)/dim0;
 
-    metadata.insert("dim1", dim1.clone());
+    metadata.insert("dim1".to_string(), dim1.clone());
     
     (result,metadata)
 }
@@ -56,8 +56,8 @@ pub fn file_to_arrayfire<Z: std::str::FromStr + arrayfire::HasAfEnum + Send + Sy
 
 	let (vector,metadata) = file_to_vec_cpu::<Z>(filename);
 
-    let dim0 = metadata[&"dim0"];
-    let dim1 = metadata[&"dim1"];
+    let dim0 = metadata["dim0"];
+    let dim1 = metadata["dim1"];
 
 	let arr_dims = arrayfire::Dim4::new(&[dim1, dim0, 1, 1]);
 	let outarr = arrayfire::Array::new(&vector, arr_dims);
@@ -72,12 +72,12 @@ pub fn file_to_arrayfire<Z: std::str::FromStr + arrayfire::HasAfEnum + Send + Sy
 pub fn write_vec_cpu_to_csv<Z: arrayfire::HasAfEnum + Sync + Send>(
 	filename: &str,
 	invec: &Vec<Z>,
-	metadata: &HashMap<&str,u64>,
+	metadata: &HashMap<String,u64>,
 	)
 {
 
-	let dim0 = metadata[&"dim0"];
-    let dim1 = metadata[&"dim1"];
+	let dim0 = metadata["dim0"];
+    let dim1 = metadata["dim1"];
 
 	//let mut wtr0 = vec_cpu_to_str::<Z>(invec);
 	let mut tmp: String = invec.par_chunks_exact(dim1 as usize).map(vec_cpu_to_str ).map(|x| x+"\n").collect();
@@ -98,10 +98,10 @@ pub fn write_arrayfire_to_csv<Z: arrayfire::HasAfEnum + Sync + Send>(
 	)
 {
 
-	let mut metadata: HashMap<&str,u64> = HashMap::new();
+	let mut metadata: HashMap<String,u64> = HashMap::new();
 
-	metadata.insert("dim0", arr.dims()[0]);
-    metadata.insert("dim1", arr.dims()[1]);
+	metadata.insert("dim0".to_string(), arr.dims()[0]);
+    metadata.insert("dim1".to_string(), arr.dims()[1]);
 
 
 	let tmp = arrayfire::transpose(arr, false);
@@ -129,7 +129,7 @@ pub fn file_to_hash_cpu<Z: std::str::FromStr + Send + Sync + Clone>(
 	filename: &str,
 	sample_size: u64,
 	batch_size: u64
-	) -> (nohash_hasher::IntMap<u64, Vec<Z> >, HashMap<&str,u64>)  {
+	) -> (nohash_hasher::IntMap<u64, Vec<Z> >, HashMap<String,u64>)  {
 
 	
 	
@@ -162,7 +162,7 @@ pub fn file_to_hash_cpu<Z: std::str::FromStr + Send + Sync + Clone>(
 pub fn file_to_hash_arrayfire<Z: std::str::FromStr + arrayfire::HasAfEnum + Send + Sync + Clone>(
 	filename: &str,
 	dims: arrayfire::Dim4
-	) -> (nohash_hasher::IntMap<u64, arrayfire::Array<Z>  >, HashMap<&str,u64>)  {
+	) -> (nohash_hasher::IntMap<u64, arrayfire::Array<Z>  >, HashMap<String,u64>)  {
 
 
 	let mut lookup2: nohash_hasher::IntMap<u64, arrayfire::Array<Z>  >   = nohash_hasher::IntMap::default();

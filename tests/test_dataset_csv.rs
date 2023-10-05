@@ -38,8 +38,8 @@ fn test_dataset_csv() {
 
 
 	assert_eq!(read_test, read_act);
-    assert_eq!(metadata[&"dim0"], 4);
-    assert_eq!(metadata[&"dim1"], 6);
+    assert_eq!(metadata["dim0"], 4);
+    assert_eq!(metadata["dim1"], 6);
 
 
 
@@ -61,8 +61,8 @@ fn test_dataset_csv() {
         431,585,-4,215
     ];
     assert_eq!(read_test2, read_act2);
-    assert_eq!(metadata[&"dim0"], 7);
-    assert_eq!(metadata[&"dim1"], 4);
+    assert_eq!(metadata["dim0"], 7);
+    assert_eq!(metadata["dim1"], 4);
 
 
 
@@ -81,8 +81,8 @@ fn test_dataset_csv() {
         431,585,-4,215
     ];
     assert_eq!(read_test2, read_act2);
-    assert_eq!(metadata[&"dim0"], 7);
-    assert_eq!(metadata[&"dim1"], 4);
+    assert_eq!(metadata["dim0"], 7);
+    assert_eq!(metadata["dim1"], 4);
 
 
 

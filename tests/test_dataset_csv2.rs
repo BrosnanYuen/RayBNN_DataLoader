@@ -22,11 +22,11 @@ fn test_dataset_csv2() {
 
 
 
-    let mut metadata: HashMap<&str,u64> = HashMap::new();
+    let mut metadata: HashMap<String,u64> = HashMap::new();
 	let randvec: Vec<i32> = rand::thread_rng().sample_iter(Standard).take(3*11).collect();
 
-    metadata.insert("dim0", 11);
-    metadata.insert("dim1", 3);
+    metadata.insert("dim0".to_string(), 11);
+    metadata.insert("dim1".to_string(), 3);
 	
 	RayBNN_DataLoader::Dataset::CSV::write_vec_cpu_to_csv::<i32>(
 		"./randvec2.csv",
@@ -39,8 +39,8 @@ fn test_dataset_csv2() {
     	"./randvec2.csv"
     );
 
-    assert_eq!(metadata[&"dim0"], 11);
-    assert_eq!(metadata[&"dim1"], 3);
+    assert_eq!(metadata["dim0"], 11);
+    assert_eq!(metadata["dim1"], 3);
 
     assert_eq!(randvec,read_test2);
 
@@ -56,11 +56,11 @@ fn test_dataset_csv2() {
 
 
 
-    let mut metadata: HashMap<&str,u64> = HashMap::new();
+    let mut metadata: HashMap<String,u64> = HashMap::new();
 	let randvec: Vec<u32> = rand::thread_rng().sample_iter(Standard).take(3*11).collect();
 
-    metadata.insert("dim0", 11);
-    metadata.insert("dim1", 3);
+    metadata.insert("dim0".to_string(), 11);
+    metadata.insert("dim1".to_string(), 3);
 	
 	RayBNN_DataLoader::Dataset::CSV::write_vec_cpu_to_csv::<u32>(
 		"./randvec2.csv",
@@ -73,8 +73,8 @@ fn test_dataset_csv2() {
     	"./randvec2.csv"
     );
 
-    assert_eq!(metadata[&"dim0"], 11);
-    assert_eq!(metadata[&"dim1"], 3);
+    assert_eq!(metadata["dim0"], 11);
+    assert_eq!(metadata["dim1"], 3);
 
     assert_eq!(randvec,read_test2);
 
@@ -93,11 +93,11 @@ fn test_dataset_csv2() {
 
 
 
-    let mut metadata: HashMap<&str,u64> = HashMap::new();
+    let mut metadata: HashMap<String,u64> = HashMap::new();
 	let randvec: Vec<f32> = rand::thread_rng().sample_iter(Standard).take(3*11).collect();
 
-    metadata.insert("dim0", 11);
-    metadata.insert("dim1", 3);
+    metadata.insert("dim0".to_string(), 11);
+    metadata.insert("dim1".to_string(), 3);
 	
 	RayBNN_DataLoader::Dataset::CSV::write_vec_cpu_to_csv::<f32>(
 		"./randvec2.csv",
@@ -110,8 +110,8 @@ fn test_dataset_csv2() {
     	"./randvec2.csv"
     );
 
-    assert_eq!(metadata[&"dim0"], 11);
-    assert_eq!(metadata[&"dim1"], 3);
+    assert_eq!(metadata["dim0"], 11);
+    assert_eq!(metadata["dim1"], 3);
 
     assert_eq!(randvec,read_test2);
 
@@ -126,7 +126,7 @@ fn test_dataset_csv2() {
 
 
 
-    let mut metadata: HashMap<&str,u64> = HashMap::new();
+    let mut metadata: HashMap<String,u64> = HashMap::new();
     let write_vec: Vec<i32> = vec![
         1,-2,3,-4,
         -5,6,-7,8,
@@ -137,8 +137,8 @@ fn test_dataset_csv2() {
         25,26,27,28
     ];
 
-    metadata.insert("dim0", 7);
-    metadata.insert("dim1", 4);
+    metadata.insert("dim0".to_string(), 7);
+    metadata.insert("dim1".to_string(), 4);
 	
 	RayBNN_DataLoader::Dataset::CSV::write_vec_cpu_to_csv::<i32>(
 		"./test_write.csv",

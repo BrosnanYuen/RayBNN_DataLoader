@@ -75,7 +75,7 @@ let (hashdata,metadata) = RayBNN_DataLoader::Dataset::CSV::file_to_hash_arrayfir
 
 # Write a float 32 bit CPU vector to CSV file
 ```
-let mut metadata: HashMap<&str,u64> = HashMap::new();
+let mut metadata: HashMap<String,u64> = HashMap::new();
 
 metadata.insert("dim0", 11);
 metadata.insert("dim1", 3);
