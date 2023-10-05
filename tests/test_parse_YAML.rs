@@ -54,4 +54,30 @@ fn test_parse_YAML() {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+    let mut modeldata_string:  HashMap<String, String> = HashMap::new();
+    let mut modeldata_float:  HashMap<String, f64> = HashMap::new();
+    let mut modeldata_int:  HashMap<String, u64> = HashMap::new();
+
+    modeldata_int.insert("num_neurons".to_string(), 65612);
+    
+
+    RayBNN_DataLoader::Model::YAML::write(
+        "./sample.yaml",
+    
+        &modeldata_string,
+        &modeldata_float,
+        &modeldata_int,
+    );
+
 }

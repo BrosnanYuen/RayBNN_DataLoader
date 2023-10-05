@@ -97,10 +97,18 @@ pub fn read(
 
 
 
+pub fn write(
+	filename: &str,
 
+    modeldata_string: &HashMap<String, String>,
+	modeldata_float: &HashMap<String, f64>,
+    modeldata_int: &HashMap<String, u64>,
+	)
+{
+	for (key, value) in modeldata_int {
+		println!("{} / {}", key, value);
+	}
 
-
-
-
+}
 
 
