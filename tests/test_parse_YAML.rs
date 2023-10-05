@@ -31,5 +31,14 @@ fn test_parse_YAML() {
         &mut modeldata_int,
     );
 
+    assert!(modeldata_string.contains_key("model_filename"));
+    assert_eq!(modeldata_string["model_filename"].clone(), "/opt/test/");
+
+    assert!(modeldata_string.contains_key("model_filename"));
+    assert_eq!(modeldata_string["model_filename"].clone(), "/opt/test/");
+
+    
+    assert!(modeldata_string.contains_key("model_filename"));
+    assert_eq!(modeldata_string["model_filename"].clone(), "/opt/test/");
 
 }
