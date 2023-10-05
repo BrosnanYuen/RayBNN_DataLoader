@@ -46,6 +46,11 @@ pub fn read(
 					continue;
 				}
 
+				if data.contains(":") == false
+				{
+					continue;
+				}
+
 				if data.contains("'")
 				{
 					let datasplit: Vec<&str> = data.split(":").collect();
