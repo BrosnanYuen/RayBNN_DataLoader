@@ -108,5 +108,16 @@ fn test_parse_YAML() {
     assert!(modeldata_string.contains_key("type"));
     assert_eq!(modeldata_string["type"].clone(), "RayBNN");
 
+    assert!(modeldata_int.contains_key("num_neurons"));
+    assert_eq!(modeldata_int["num_neurons"].clone(), 65612);
+
+    assert!(modeldata_int.contains_key("num_glia"));
+    assert_eq!(modeldata_int["num_glia"].clone(), 8034);
+
+    assert!(modeldata_float.contains_key("growth_rate"));
+    assert_eq!(modeldata_float["growth_rate"].clone(), 3.2);
+
+    assert!(modeldata_float.contains_key("delete_rate"));
+    assert_eq!(modeldata_float["delete_rate"].clone(), 0.1);
 
 }
