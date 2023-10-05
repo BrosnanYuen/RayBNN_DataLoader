@@ -98,3 +98,19 @@ RayBNN_DataLoader::Dataset::CSV::write_arrayfire_to_csv::<f64>(
 ```
 
 
+
+# Read YAML Model Information
+```
+let mut modeldata_string:  HashMap<String, String> = HashMap::new();
+let mut modeldata_float:  HashMap<String, f64> = HashMap::new();
+let mut modeldata_int:  HashMap<String, u64> = HashMap::new();
+
+RayBNN_DataLoader::Model::YAML::read(
+    "./test_data/test.yaml",
+
+    &mut modeldata_string,
+    &mut modeldata_float,
+    &mut modeldata_int,
+);
+```
+

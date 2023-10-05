@@ -46,6 +46,12 @@ fn test_parse_YAML() {
     assert_eq!(modeldata_float["add_ratio"].clone(), 4.7);
 
 
+    assert!(modeldata_int.contains_key("active_size"));
+    assert_eq!(modeldata_int["active_size"].clone(), 1552);
+
+    assert!(modeldata_int.contains_key("input_size"));
+    assert_eq!(modeldata_int["input_size"].clone(), 15);
+
 
 
 }
