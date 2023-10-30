@@ -22,8 +22,11 @@ fn test_dataset_csv3() {
     let mut neuron_pos = RayBNN_DataLoader::Dataset::CSV::file_to_arrayfire::<f64>(
     	"./test_data/neuron_pos3.csv",
     );
-
-
 	arrayfire::print_gen("neuron_pos".to_string(), &neuron_pos,Some(6));
+
+
+	assert_eq!(neuron_pos.dims()[0],13);
+	assert_eq!(neuron_pos.dims()[1],3);
+
 
 }
