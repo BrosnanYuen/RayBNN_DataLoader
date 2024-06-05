@@ -33,7 +33,7 @@ pub fn random_uniform_range(
 ) -> u64
 {
 
-	let rand_number = single_random_uniform();
+	let rand_number = single_random_uniform::<f64>();
 
 	let min_idx  =  (rand_number  * (max_size as f64) ) as u64;
 
