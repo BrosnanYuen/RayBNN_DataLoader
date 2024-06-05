@@ -29,13 +29,13 @@ pub fn rscalar<Z:  num_traits::Float>(
 
 
 
-pub fn rvector(
-	input: &Vec<f64>,
+pub fn rvector<Z:  num_traits::Float + Send + Sync>(
+	input: &Vec<Z>,
 	decimal: u64
-	) -> Vec<f64>  {
+	) -> Vec<Z>  {
 
 
-	input.par_iter().map(|&x|  rscalar(x , decimal) ).collect::<Vec<f64>>()
+	input.par_iter().map(|&x|  rscalar(x , decimal) ).collect::<Vec<Z>>()
 }
 
 
