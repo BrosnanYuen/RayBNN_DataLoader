@@ -2,7 +2,7 @@
 use rayon::prelude::*;
 
 
-
+use num_traits;
 
 
 
@@ -10,13 +10,17 @@ use rayon::prelude::*;
 
 const TEN: f64 = 10.0;
 
-pub fn rscalar(
-	input: f64,
+pub fn rscalar<Z:  num_traits::Float>(
+	input: Z,
 	decimal: u64
-	) -> f64  {
+	) -> Z  {
 
 	let places = TEN.powf(decimal as f64);
-	(input * places).round() / places
+	let places: Z = num_traits::cast(places).unwrap();
+
+	let ret = (input * places).round() / places;
+
+	ret
 }
 
 
