@@ -72,7 +72,7 @@ fn test_round() {
     let mut total_sum = 0.0;
     for zz in 0..max_iter
     {
-        let rand_number = clusterdiffeq::export::rand_f64::single_random_uniform();
+        let rand_number = RayBNN_DataLoader::Dataset::Random::single_random_uniform();
 
         assert!(rand_number >= 0.0 );
         assert!(1.0 >= rand_number);
@@ -100,7 +100,7 @@ fn test_round() {
     for qq in 0..max_iter
     {
 
-        let rand_num =  clusterdiffeq::export::rand_u64::random_uniform_range(max_num);
+        let rand_num =  RayBNN_DataLoader::Dataset::Random::random_uniform_range(max_num);
 
         zero_vec[rand_num as usize] = zero_vec[rand_num as usize] + 1;
         //println!("rand_num {}",rand_num);
