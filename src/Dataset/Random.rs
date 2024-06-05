@@ -6,14 +6,14 @@ use rayon::prelude::*;
 
 
 
-pub fn single_random_uniform() -> f64
+pub fn single_random_uniform<Z: arrayfire::FloatingPoint>() -> Z
 {
 
 	let single_rand_dims = arrayfire::Dim4::new(&[1,1,1,1]);
 
-	let singlerand = arrayfire::randu::<f64>(single_rand_dims);
+	let singlerand = arrayfire::randu::<Z>(single_rand_dims);
 
-	let mut singlerand_cpu: [f64 ; 1] = [0.0];
+	let mut singlerand_cpu: [Z ; 1] = [Z::default()];
 	singlerand.host(&mut singlerand_cpu);
 	
 
