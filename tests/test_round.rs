@@ -19,7 +19,7 @@ fn test_round() {
     arrayfire::set_device(DEVICE);
 
 
-    let value =  clusterdiffeq::export::round_f64::rscalar(31.12356234, 4);
+    let value =  RayBNN_DataLoader::Dataset::Round::rscalar(31.12356234, 4);
 
     assert_eq!(value, 31.1236);
 
@@ -30,7 +30,7 @@ fn test_round() {
 
 
 
-    let value =  clusterdiffeq::export::round_f64::rscalar(0.231543275, 6);
+    let value =  RayBNN_DataLoader::Dataset::Round::rscalar(0.231543275, 6);
 
     assert_eq!(value, 0.231543);
 
@@ -40,7 +40,7 @@ fn test_round() {
 
 
 
-    let value =  clusterdiffeq::export::round_f64::rscalar(254123.21232, 2);
+    let value =  RayBNN_DataLoader::Dataset::Round::rscalar(254123.21232, 2);
 
     assert_eq!(value, 254123.21);
 
@@ -58,7 +58,7 @@ fn test_round() {
 
 
     let vec0: Vec<f64> = vec![324.34156354, 7.34398734, 0.231243538, -0.3412443];
-    let vec1 =  clusterdiffeq::export::round_f64::rvector(&vec0, 4);
+    let vec1 =  RayBNN_DataLoader::Dataset::Round::rvector(&vec0, 4);
 
     let vec2: Vec<f64> = vec![324.3416, 7.344, 0.2312, -0.3412];
     assert_eq!(vec1, vec2 );
