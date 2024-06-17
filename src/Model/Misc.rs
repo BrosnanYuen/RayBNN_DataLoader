@@ -246,7 +246,7 @@ pub fn read_network_dir<Z: std::str::FromStr + arrayfire::HasAfEnum + Send + Syn
 	){
 
 
-    let filename = format!("{}/mode.yaml",dir_path);
+    let filename = format!("{}/model.yaml",dir_path);
     read(
         &filename, 
         modeldata_string, 
