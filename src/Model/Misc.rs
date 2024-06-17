@@ -217,3 +217,21 @@ write_arrayfire_to_csv(&filename,&neuron_idx);
 
 
 */
+
+
+
+
+pub fn read_network_dir<Z: std::str::FromStr + arrayfire::HasAfEnum + Send + Sync>(
+	filename: &str,
+
+    modeldata_string: &mut HashMap<String, String>,
+	modeldata_float: &mut HashMap<String, f64>,
+    modeldata_int: &mut HashMap<String, u64>,
+	) -> arrayfire::Array<Z>  {
+
+
+}
+
+
+
+
