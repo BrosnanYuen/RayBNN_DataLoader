@@ -167,13 +167,52 @@ modeldata_float.insert("repel_const".to_string(), netdata.repel_const.clone());
 
 
 
+let dir_path = "/tmp/network_batch21/";
+
+let filename = format!("{}/model.yaml",dir_path);
 write(
-    "/tmp/network/model.yaml",
+    &filename,
 
     &modeldata_string,
     &modeldata_float,
     &modeldata_int,
 );
+
+let filename = format!("{}/WValues.csv",dir_path);
+write_arrayfire_to_csv(&filename,&WValues);
+
+let filename = format!("{}/WRowIdxCSR.csv",dir_path);
+write_arrayfire_to_csv(&filename,&WRowIdxCSR);
+
+let filename = format!("{}/WColIdx.csv",dir_path);
+write_arrayfire_to_csv(&filename,&WColIdx);
+
+let filename = format!("{}/H.csv",dir_path);
+write_arrayfire_to_csv(&filename,&H);
+
+let filename = format!("{}/A.csv",dir_path);
+write_arrayfire_to_csv(&filename,&A);
+
+let filename = format!("{}/B.csv",dir_path);
+write_arrayfire_to_csv(&filename,&B);
+
+let filename = format!("{}/C.csv",dir_path);
+write_arrayfire_to_csv(&filename,&C);
+
+let filename = format!("{}/D.csv",dir_path);
+write_arrayfire_to_csv(&filename,&D);
+
+let filename = format!("{}/E.csv",dir_path);
+write_arrayfire_to_csv(&filename,&E);
+
+let filename = format!("{}/glia_pos.csv",dir_path);
+write_arrayfire_to_csv(&filename,&glia_pos);
+
+let filename = format!("{}/neuron_pos.csv",dir_path);
+write_arrayfire_to_csv(&filename,&neuron_pos);
+
+let filename = format!("{}/neuron_idx.csv",dir_path);
+write_arrayfire_to_csv(&filename,&neuron_idx);
 
 
 
