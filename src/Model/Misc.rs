@@ -17,7 +17,7 @@ use std::io::{self, BufRead};
 use std::path::Path;
 
 
-
+use crate::Model::YAML::read;
 
 
 /*
@@ -238,12 +238,21 @@ write_arrayfire_to_csv(&filename,&neuron_idx);
 
 
 pub fn read_network_dir<Z: std::str::FromStr + arrayfire::HasAfEnum + Send + Sync>(
-	filename: &str,
+	dir_path: &str,
 
     modeldata_string: &mut HashMap<String, String>,
 	modeldata_float: &mut HashMap<String, f64>,
     modeldata_int: &mut HashMap<String, u64>,
-	) -> arrayfire::Array<Z>  {
+	){
+
+
+    let filename = format!("{}/mode.yaml",dir_path);
+    read(
+        &filename, 
+        modeldata_string, 
+        modeldata_float, 
+        modeldata_int
+    );
 
 
 }
