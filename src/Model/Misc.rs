@@ -36,6 +36,14 @@ modeldata_float.insert("repel_const".to_string(), netdata.repel_const.clone());
 
 
 
+write(
+    "/tmp/network/model.yaml",
+
+    &modeldata_string,
+    &modeldata_float,
+    &modeldata_int,
+);
+
 
 
 */
