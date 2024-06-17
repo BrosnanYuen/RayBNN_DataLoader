@@ -7,6 +7,137 @@ use rayon::prelude::*;
 /*
 
 
+
+
+
+
+
+
+use std::fs;
+
+
+use std::fs::File;
+use std::io::Write;
+
+
+use rayon::prelude::*;
+
+use std::io::{self, BufRead};
+use std::path::Path;
+
+
+pub fn write(
+	filename: &str,
+
+    modeldata_string: &HashMap<String, String>,
+	modeldata_float: &HashMap<String, f64>,
+    modeldata_int: &HashMap<String, u64>,
+	)
+{
+	let mut strvec: Vec<String> = Vec::new();
+
+	for (key, value) in modeldata_int {
+		let tmp = format!("{}: {}\n", key.clone(), value.clone());
+		strvec.push(tmp.clone());
+	}
+
+	for (key, value) in modeldata_float {
+		let tmp = format!("{}: {}\n", key.clone(), value.clone());
+		strvec.push(tmp.clone());
+	}
+
+	for (key, value) in modeldata_string {
+		let tmp = format!("{}: '{}'\n", key.clone(), value.clone());
+		strvec.push(tmp.clone());
+	}
+
+	let tmpstr: String = strvec.into_par_iter().collect::<String>();
+
+
+	let mut file0 = File::create(filename).unwrap();
+	writeln!(file0, "{}", tmpstr);
+}
+
+
+
+
+
+pub fn vec_cpu_to_str<Z: arrayfire::HasAfEnum + Sync + Send>(
+	invec: &[Z]
+	) -> String  {
+
+	let mut s0 = format!("{:?}",invec.clone());
+	s0 = s0.replace("[", "");
+	s0 = s0.replace("]", "");
+	s0 = s0.replace(" ", "");
+
+	s0
+}
+
+
+
+
+
+
+pub fn write_vec_cpu_to_csv<Z: arrayfire::HasAfEnum + Sync + Send>(
+	filename: &str,
+	invec: &Vec<Z>,
+	metadata: &HashMap<String,u64>,
+	)
+{
+
+	let dim0 = metadata["dim0"];
+    let dim1 = metadata["dim1"];
+
+	//let mut wtr0 = vec_cpu_to_str::<Z>(invec);
+	let mut tmp: String = invec.par_chunks_exact(dim1 as usize).map(vec_cpu_to_str ).map(|x| x+"\n").collect();
+	tmp.pop();
+
+
+	let mut file0 = File::create(filename).unwrap();
+	writeln!(file0, "{}", tmp);
+}
+
+
+
+
+
+
+
+pub fn write_arrayfire_to_csv<Z: arrayfire::HasAfEnum + Sync + Send>(
+	filename: &str,
+	arr: &arrayfire::Array<Z>
+	)
+{
+
+	let mut metadata: HashMap<String,u64> = HashMap::new();
+
+	metadata.insert("dim0".to_string(), arr.dims()[0]);
+    metadata.insert("dim1".to_string(), arr.dims()[1]);
+
+
+	let tmp = arrayfire::transpose(arr, false);
+
+	let mut invec = vec!(Z::default();tmp.elements());
+	tmp.host(&mut invec);
+
+	write_vec_cpu_to_csv::<Z>(
+		filename,
+		&invec,
+		&metadata
+	);
+}
+
+
+
+
+
+
+
+
+
+
+
 let mut modeldata_int: HashMap<String,u64> = HashMap::new();
 let mut modeldata_float: HashMap<String,f64> = HashMap::new();
 let mut modeldata_string: HashMap<String,String> = HashMap::new();
