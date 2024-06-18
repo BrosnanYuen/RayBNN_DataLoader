@@ -280,7 +280,29 @@ pub fn read_network_dir<Z: std::str::FromStr + arrayfire::FloatingPoint  + Send 
 	let filename = format!("{}/H.csv",dir_path);
 	*H = file_to_arrayfire::<Z>(&filename);
 
+	let filename = format!("{}/A.csv",dir_path);
+	*A = file_to_arrayfire::<Z>(&filename);
 
+	let filename = format!("{}/B.csv",dir_path);
+	*B = file_to_arrayfire::<Z>(&filename);
+
+	let filename = format!("{}/C.csv",dir_path);
+	*C = file_to_arrayfire::<Z>(&filename);
+
+	let filename = format!("{}/D.csv",dir_path);
+	*D = file_to_arrayfire::<Z>(&filename);
+
+	let filename = format!("{}/E.csv",dir_path);
+	*E = file_to_arrayfire::<Z>(&filename);
+
+	let filename = format!("{}/glia_pos.csv",dir_path);
+	*glia_pos = file_to_arrayfire::<Z>(&filename);
+
+	let filename = format!("{}/neuron_pos.csv",dir_path);
+	*neuron_pos = file_to_arrayfire::<Z>(&filename);
+
+	let filename = format!("{}/neuron_idx.csv",dir_path);
+	*neuron_idx = file_to_arrayfire::<i32>(&filename);
 
 }
 
