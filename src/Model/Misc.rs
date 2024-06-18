@@ -18,7 +18,7 @@ use std::path::Path;
 
 
 use crate::Model::YAML::read;
-
+use crate::Dataset::CSV::file_to_arrayfire;
 
 /*
 
@@ -237,7 +237,7 @@ write_arrayfire_to_csv(&filename,&neuron_idx);
 
 
 
-pub fn read_network_dir<Z: arrayfire::FloatingPoint>(
+pub fn read_network_dir<Z: std::str::FromStr + arrayfire::FloatingPoint  + Send + Sync >(
 	dir_path: &str,
 
     modeldata_string: &mut HashMap<String, String>,
@@ -267,6 +267,19 @@ pub fn read_network_dir<Z: arrayfire::FloatingPoint>(
         modeldata_float, 
         modeldata_int
     );
+
+	let filename = format!("{}/WValues.csv",dir_path);
+	*WValues = file_to_arrayfire::<Z>(&filename);
+
+	let filename = format!("{}/WRowIdxCSR.csv",dir_path);
+	*WRowIdxCSR = file_to_arrayfire::<i32>(&filename);
+
+	let filename = format!("{}/WColIdx.csv",dir_path);
+	*WColIdx = file_to_arrayfire::<i32>(&filename);
+
+	let filename = format!("{}/H.csv",dir_path);
+	*H = file_to_arrayfire::<Z>(&filename);
+
 
 
 }
