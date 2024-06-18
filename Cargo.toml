@@ -1,6 +1,6 @@
 [package]
 name = "RayBNN_DataLoader"
-version = "2.0.2"
+version = "2.0.3"
 authors = ["Brosnan Yuen <brosnanyuen@gmail.com>"]
 edition = "2021"
 description = "Read CSV, numpy, and binary files to Rust vectors of f16, f32, f64, u8, u16, u32, u64, i8, i16, i32, i64"
