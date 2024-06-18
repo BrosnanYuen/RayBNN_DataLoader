@@ -115,4 +115,17 @@ fn test_read_dir() {
     assert_eq!(B.dims()[0], 600);
     assert_eq!(B.dims()[1], 1);
 
+    assert_eq!(C.dims()[0], 600);
+    assert_eq!(C.dims()[1], 1);
+
+    assert_eq!(glia_pos.dims()[0], 197);
+    assert_eq!(glia_pos.dims()[1], 3);
+
+    assert_eq!(neuron_pos.dims()[0], 203);
+    assert_eq!(neuron_pos.dims()[1], 3);
+
+    assert_eq!(neuron_idx.dims()[0], 203);
+    assert_eq!(neuron_idx.dims()[1], 1);
+
+
 }
