@@ -96,4 +96,23 @@ fn test_read_dir() {
 
     assert!(modeldata_float.contains_key("con_rad"));
     assert_eq!(modeldata_float["con_rad"].clone(), 0.6);
+
+
+    
+    assert_eq!(WValues.dims()[0], 3136);
+    assert_eq!(WValues.dims()[1], 1);
+
+
+    assert_eq!(WRowIdxCSR.dims()[0], 601);
+    assert_eq!(WRowIdxCSR.dims()[1], 1);
+
+    assert_eq!(WColIdx.dims()[0], 3136);
+    assert_eq!(WColIdx.dims()[1], 1);
+
+    assert_eq!(A.dims()[0], 600);
+    assert_eq!(A.dims()[1], 1);
+
+    assert_eq!(B.dims()[0], 600);
+    assert_eq!(B.dims()[1], 1);
+
 }
