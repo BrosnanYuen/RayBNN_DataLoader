@@ -237,7 +237,7 @@ write_arrayfire_to_csv(&filename,&neuron_idx);
 
 
 
-pub fn read_network_dir<Z: std::str::FromStr + arrayfire::HasAfEnum + Send + Sync>(
+pub fn read_network_dir<Z: arrayfire::FloatingPoint>(
 	dir_path: &str,
 
     modeldata_string: &mut HashMap<String, String>,
@@ -245,17 +245,17 @@ pub fn read_network_dir<Z: std::str::FromStr + arrayfire::HasAfEnum + Send + Syn
     modeldata_int: &mut HashMap<String, u64>,
 
 
-	WValues: &mut arrayfire::Array<f64>,
+	WValues: &mut arrayfire::Array<Z>,
 	WRowIdxCSR: &mut arrayfire::Array<i32>,
 	WColIdx: &mut arrayfire::Array<i32>,
-	H: &mut arrayfire::Array<f64>,
-	A: &mut arrayfire::Array<f64>,
-	B: &mut arrayfire::Array<f64>,
-	C: &mut arrayfire::Array<f64>,
-	D: &mut arrayfire::Array<f64>,
-	E: &mut arrayfire::Array<f64>,
-	glia_pos: &mut arrayfire::Array<f64>,
-	neuron_pos: &mut arrayfire::Array<f64>,
+	H: &mut arrayfire::Array<Z>,
+	A: &mut arrayfire::Array<Z>,
+	B: &mut arrayfire::Array<Z>,
+	C: &mut arrayfire::Array<Z>,
+	D: &mut arrayfire::Array<Z>,
+	E: &mut arrayfire::Array<Z>,
+	glia_pos: &mut arrayfire::Array<Z>,
+	neuron_pos: &mut arrayfire::Array<Z>,
 	neuron_idx: &mut arrayfire::Array<i32>
 	){
 
