@@ -74,15 +74,26 @@ fn test_read_dir() {
     assert_eq!(modeldata_int["neuron_size"].clone(), 600);
 
     assert!(modeldata_int.contains_key("step_num"));
-    assert_eq!(modeldata_int["step_num"].clone(), 600);
+    assert_eq!(modeldata_int["step_num"].clone(), 10);
 
     assert!(modeldata_int.contains_key("proc_num"));
-    assert_eq!(modeldata_int["proc_num"].clone(), 600);
+    assert_eq!(modeldata_int["proc_num"].clone(), 4);
 
     assert!(modeldata_int.contains_key("input_size"));
-    assert_eq!(modeldata_int["input_size"].clone(), 600);
+    assert_eq!(modeldata_int["input_size"].clone(), 4);
 
     assert!(modeldata_int.contains_key("space_dims"));
-    assert_eq!(modeldata_int["space_dims"].clone(), 600);
+    assert_eq!(modeldata_int["space_dims"].clone(), 3);
 
+    assert!(modeldata_int.contains_key("batch_size"));
+    assert_eq!(modeldata_int["batch_size"].clone(), 105);
+
+    assert!(modeldata_int.contains_key("active_size"));
+    assert_eq!(modeldata_int["active_size"].clone(), 25);
+
+    assert!(modeldata_float.contains_key("spring_const"));
+    assert_eq!(modeldata_float["spring_const"].clone(), 0.01);
+
+    assert!(modeldata_float.contains_key("con_rad"));
+    assert_eq!(modeldata_float["con_rad"].clone(), 0.6);
 }
