@@ -22,23 +22,52 @@ fn test_read_dir() {
     let mut modeldata_float:  HashMap<String, f64> = HashMap::new();
     let mut modeldata_int:  HashMap<String, u64> = HashMap::new();
     
+	let temp_dims = arrayfire::Dim4::new(&[1,1,1,1]);
 
-    RayBNN_DataLoader::Model::Misc::read_network_dir("./test_data/network_batch21/", 
-        modeldata_string, 
-        modeldata_float, 
-        modeldata_int, 
-        WValues, 
-        WRowIdxCSR, 
-        WColIdx, 
-        H, 
-        A, 
-        B, 
-        C, 
-        D, 
-        E, 
-        glia_pos, 
-        neuron_pos, 
-        neuron_idx
+    
+	let mut glia_pos = arrayfire::constant::<f64>(0.0,temp_dims);
+	let mut neuron_pos = arrayfire::constant::<f64>(0.0,temp_dims);
+
+
+
+	
+	let mut H = arrayfire::constant::<f64>(0.0,temp_dims);
+	let mut A = arrayfire::constant::<f64>(0.0,temp_dims);
+	let mut B = arrayfire::constant::<f64>(0.0,temp_dims);
+	let mut C = arrayfire::constant::<f64>(0.0,temp_dims);
+	let mut D = arrayfire::constant::<f64>(0.0,temp_dims);
+	let mut E = arrayfire::constant::<f64>(0.0,temp_dims);
+	let mut neuron_idx = arrayfire::constant::<i32>(0,temp_dims);
+
+
+
+
+
+	let mut WValues = arrayfire::constant::<f64>(0.0,temp_dims);
+	let mut WRowIdxCSR = arrayfire::constant::<i32>(0,temp_dims);
+	let mut WColIdx = arrayfire::constant::<i32>(0,temp_dims);
+
+
+
+    RayBNN_DataLoader::Model::Network::read_network_dir("./test_data/network_batch21/", 
+        &mut modeldata_string, 
+        &mut modeldata_float, 
+        &mut modeldata_int, 
+        &mut WValues, 
+        &mut WRowIdxCSR, 
+        &mut WColIdx, 
+        &mut H, 
+        &mut A, 
+        &mut B, 
+        &mut C, 
+        &mut D, 
+        &mut E, 
+        &mut glia_pos, 
+        &mut neuron_pos, 
+        &mut neuron_idx
     );
+
+
+
 
 }
