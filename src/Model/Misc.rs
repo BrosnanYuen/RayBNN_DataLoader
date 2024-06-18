@@ -243,6 +243,20 @@ pub fn read_network_dir<Z: std::str::FromStr + arrayfire::HasAfEnum + Send + Syn
     modeldata_string: &mut HashMap<String, String>,
 	modeldata_float: &mut HashMap<String, f64>,
     modeldata_int: &mut HashMap<String, u64>,
+
+
+	WValues: &mut arrayfire::Array<f64>,
+	WRowIdxCSR: &mut arrayfire::Array<i32>,
+	WColIdx: &mut arrayfire::Array<i32>,
+	H: &mut arrayfire::Array<f64>,
+	A: &mut arrayfire::Array<f64>,
+	B: &mut arrayfire::Array<f64>,
+	C: &mut arrayfire::Array<f64>,
+	D: &mut arrayfire::Array<f64>,
+	E: &mut arrayfire::Array<f64>,
+	glia_pos: &mut arrayfire::Array<f64>,
+	neuron_pos: &mut arrayfire::Array<f64>,
+	neuron_idx: &mut arrayfire::Array<i32>
 	){
 
 
