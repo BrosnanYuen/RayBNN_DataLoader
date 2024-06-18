@@ -67,7 +67,22 @@ fn test_read_dir() {
         &mut neuron_idx
     );
 
+    assert!(modeldata_int.contains_key("output_size"));
+    assert_eq!(modeldata_int["output_size"].clone(), 3);
 
+    assert!(modeldata_int.contains_key("neuron_size"));
+    assert_eq!(modeldata_int["neuron_size"].clone(), 600);
 
+    assert!(modeldata_int.contains_key("step_num"));
+    assert_eq!(modeldata_int["step_num"].clone(), 600);
+
+    assert!(modeldata_int.contains_key("proc_num"));
+    assert_eq!(modeldata_int["proc_num"].clone(), 600);
+
+    assert!(modeldata_int.contains_key("input_size"));
+    assert_eq!(modeldata_int["input_size"].clone(), 600);
+
+    assert!(modeldata_int.contains_key("space_dims"));
+    assert_eq!(modeldata_int["space_dims"].clone(), 600);
 
 }
